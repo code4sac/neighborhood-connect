@@ -6,6 +6,11 @@ export default class NewPriorityForm extends Component {
         name: '',
         details: '',
     }
+    
+    saveToState = e => {
+      this.setState({ [e.target.name]: e.target.value });
+    }
+    
     render() {
         return (
             <>
