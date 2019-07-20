@@ -1,6 +1,8 @@
 import React from 'react';
 import placeholder from '../assets/placeholder.jpg';
 import styled from 'styled-components';
+import { Link } from "react-router-dom";
+
 
 const PostWrapper = styled.div`
     padding: 1rem;
@@ -54,16 +56,15 @@ export default class Post extends React.Component {
                 <ul className="Post__list">
                     <li className="Post__item">
                         <span className="Post__owner">
-                        <span className="Post__image">
-                            <img src={placeholder} alt="placeholder" />
-                        </span>
-                        <span>
-                            <h3>NextDoor</h3>
-                            <p>June 21, 2019</p>
-                        </span>
+                            <span className="Post__image">
+                                <img src={placeholder} alt="placeholder" />
+                            </span>
+                            <span>
+                                <h3>NextDoor</h3>
+                                <p>June 21, 2019</p>
+                            </span>
                         </span>
                         <p>Sacramento</p>
-                        
                     </li>
                     <li>
                         <p>3 new Nextdoor incidents add. Making 48 in the past week.</p>
@@ -71,8 +72,7 @@ export default class Post extends React.Component {
                     <li className="Post__social">
                         <span>&#10084;</span>
                         <span>
-                        <a href="https://whimsical.com/32AqWM2AASAS7Ja6fqTp9a">Share</a>
-                        <a href="https://whimsical.com/32AqWM2AASAS7Ja6fqTp9a">Help Out</a>
+                            <Link to="/addevent">&#8594;</Link>
                         </span>
                     </li>
                 </ul>
