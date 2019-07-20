@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
-import Layout from './components/Layout';
+import PostContainer from './components/PostContainer'
 
 function App() {
   return (
-    <Layout>
-
-    </Layout>
+    <div className="App">
+      <PostContainer />
+    </div>
   );
 }
 
