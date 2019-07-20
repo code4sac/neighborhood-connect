@@ -1,9 +1,10 @@
 import React from "react";
 import Post from "./Post";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { seed } from "./seed";
 
 const PriorityDetailsWrapper = styled.div`
-
     .details {
         display: flex;
         flex-direction: row;
@@ -23,7 +24,7 @@ const PriorityDetailsWrapper = styled.div`
         height: 2.5rem;
         border-radius: 50%;
         border: 0.1rem solid lightgrey;
-        margin-right: .5rem;
+        margin-right: 0.5rem;
     }
 `;
 
@@ -32,74 +33,93 @@ const API_UPCOMING = "https://nameless-garden-17654.herokuapp.com";
 const API_ADD = "https://whimsical.com/32AqWM2AASAS7Ja6fqTp9a";
 
 export default class PriorityDetails extends React.Component {
-  constructor(props) {
-    super(props);
+    constructor(props) {
+        super(props);
 
-    this.state = {
-      pastData: [],
-      upcomingData: [],
-      addEvent: {}
+        this.state = {
+            pastData: [],
+            upcomingData: [],
+            addEvent: {}
+        };
     }
-  }
 
-  componentDidMount() {
-    this.loadPast();
-  }
-  
-  loadPast() {
-    return fetch(API_PAST)
-      .then(res => {
-        if(!res.ok) {
-          return Promise.reject(res.statusText);
-        }
-        return res.json();
-      })
-      .then(response => {
+    componentDidMount() {
+        console.log("triggered");
+        this.loadPast();
+    }
+
+    loadPast() {
         this.setState({
-          pastData: response
+            pastData: seed
         });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }
+    }
 
-  loadUpcoming() {
-    return fetch(API_UPCOMING)
-      .then(res => {
-        if(!res.ok) {
-          return Promise.reject(res.statusText);
-        }
-        return res.json();
-      })
-      .then(response => {
+    loadUpcoming() {
         this.setState({
-          upcomingData: response
+            upcomingData: seed
         });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }
+    }
 
+    // loadPast() {
+    //   return fetch(API_PAST)
+    //     .then(res => {
+    //       if(!res.ok) {
+    //         return Promise.reject(res.statusText);
+    //       }
+    //       return res.json();
+    //     })
+    //     .then(response => {
+    //       this.setState({
+    //         pastData: response
+    //       });
+    //     })
+    //     .catch(err => {
+    //       console.log(err);
+    //     });
+    // }
 
+    // loadUpcoming() {
+    //   return fetch(API_UPCOMING)
+    //     .then(res => {
+    //       if(!res.ok) {
+    //         return Promise.reject(res.statusText);
+    //       }
+    //       return res.json();
+    //     })
+    //     .then(response => {
+    //       this.setState({
+    //         upcomingData: response
+    //       });
+    //     })
+    //     .catch(err => {
+    //       console.log(err);
+    //     });
+    // }
 
-  render() {
-    console.log(this.state.pastData);
-    return (
-        <PriorityDetailsWrapper>
-            <div className="details">
-              <span className="details__number">1</span><h2 className="details__heading">Homelessness</h2>
-            </div>
-            <button onClick={() =>this.loadPast()}>Past Events</button>
-            <button onClick={() => this.loadUpcoming()}>Upcoming Events</button>
-            <button>Add Events</button>
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-        </PriorityDetailsWrapper>
-    );
-  }
+    render() {
+        console.log(this.state.pastData);
+        console.log(seed);
+
+        let pastData;
+        if (this.state.pastData) {
+            pastData = this.state.pastData.map((post, index) => {
+                return <Post data={post} index={index} key={index} />;
+            });
+        }
+
+        return (
+            <PriorityDetailsWrapper>
+                <div className="details">
+                    <span className="details__number">1</span>
+                    <h2 className="details__heading">Homelessness</h2>
+                </div>
+                <button onClick={() => this.loadPast()}>Past Events</button>
+                <button onClick={() => this.loadUpcoming()}>Upcoming Events</button>
+                <Link to="/addevent">
+                    <button>Add Events</button>
+                </Link>
+                {pastData}
+            </PriorityDetailsWrapper>
+        );
+    }
 }

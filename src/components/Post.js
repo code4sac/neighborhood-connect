@@ -1,8 +1,7 @@
-import React from 'react';
-import placeholder from '../assets/placeholder.jpg';
-import styled from 'styled-components';
+import React from "react";
+import placeholder from "../assets/placeholder.jpg";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
-
 
 const PostWrapper = styled.div`
     padding: 1rem;
@@ -17,7 +16,7 @@ const PostWrapper = styled.div`
     }
 
     li {
-        margin: .5rem 0;
+        margin: 0.5rem 0;
     }
 
     img {
@@ -49,31 +48,30 @@ const PostWrapper = styled.div`
 `;
 
 export default class Post extends React.Component {
-
     render() {
+        const { avatar, location, name, date, overview } = this.props.data;
+
         return (
             <PostWrapper>
                 <ul className="Post__list">
                     <li className="Post__item">
                         <span className="Post__owner">
                             <span className="Post__image">
-                                <img src={placeholder} alt="placeholder" />
+                                <img src={avatar} alt="placeholder" />
                             </span>
                             <span>
-                                <h3>NextDoor</h3>
-                                <p>June 21, 2019</p>
+                                <h3>{name}</h3>
+                                <p>{date}</p>
                             </span>
                         </span>
-                        <p>Sacramento</p>
+                        <p>{location}</p>
                     </li>
                     <li>
-                        <p>3 new Nextdoor incidents add. Making 48 in the past week.</p>
+                        <p>{overview}</p>
                     </li>
                     <li className="Post__social">
                         <span>&#10084;</span>
-                        <span>
-                            <Link to="/addevent">&#8594;</Link>
-                        </span>
+                        <span>&#8594;</span>
                     </li>
                 </ul>
             </PostWrapper>
