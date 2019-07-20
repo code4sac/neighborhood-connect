@@ -49,6 +49,7 @@ const PostWrapper = styled.div`
 
 export default class Post extends React.Component {
     render() {
+        console.log(this.props.data)
         const { avatar, location, name, date, overview } = this.props.data;
 
         return (

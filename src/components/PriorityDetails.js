@@ -2,7 +2,7 @@ import React from "react";
 import Post from "./Post";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { seed } from "./seed";
+import { seed, seed2 } from "./seed";
 
 const PriorityDetailsWrapper = styled.div`
     .details {
@@ -39,7 +39,8 @@ export default class PriorityDetails extends React.Component {
         this.state = {
             pastData: [],
             upcomingData: [],
-            addEvent: {}
+            addEvent: {},
+            toggle: 1
         };
     }
 
@@ -50,13 +51,15 @@ export default class PriorityDetails extends React.Component {
 
     loadPast() {
         this.setState({
-            pastData: seed
+            pastData: seed,
+            toggle: 1
         });
     }
 
     loadUpcoming() {
         this.setState({
-            upcomingData: seed
+            upcomingData: seed2,
+            toggle: 2
         });
     }
 
@@ -100,9 +103,15 @@ export default class PriorityDetails extends React.Component {
         console.log(this.state.pastData);
         console.log(seed);
 
-        let pastData;
-        if (this.state.pastData) {
-            pastData = this.state.pastData.map((post, index) => {
+        let formedData;
+        if (this.state.toggle === 1 && this.state.pastData) {
+            formedData = this.state.pastData.map((post, index) => {
+                return <Post data={post} index={index} key={index} />;
+            });
+        }
+
+        if (this.state.toggle === 2 && this.state.upcomingData) {
+            formedData = this.state.upcomingData.map((post, index) => {
                 return <Post data={post} index={index} key={index} />;
             });
         }
@@ -118,7 +127,7 @@ export default class PriorityDetails extends React.Component {
                 <Link to="/addevent">
                     <button>Add Events</button>
                 </Link>
-                {pastData}
+                {formedData}
             </PriorityDetailsWrapper>
         );
     }
