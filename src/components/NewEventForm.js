@@ -37,29 +37,28 @@ export default class NewEventForm extends Component {
           <form 
             name='new-event'
             onSubmit={async e => {
-              e.preventDefault()
-              fetch('INSERT__URL', { 
+              e.preventDefault();
+              fetch('INSERT_POST_URL', { 
                 method: 'POST',
-              headers: 'change this to the headers later!',
               body: JSON.stringify(this.state)}
               )
                 .then(this.setState({name:'',type:'',date:'',goal:'',details:''}))
             }}>
-            <label for='name'>Event Name</label>
+            <label htmlFor='name'>Event Name</label>
             <input 
               type='text' 
               name='name' 
               value={this.state.name}
               onChange={this.saveToState}/>
 
-            <label for='type'>What Type of Event?</label>
+            <label htmlFor='type'>What Type of Event?</label>
             <input 
               type='text' 
               name='type' 
               value={this.state.type}
               onChange={this.saveToState}/>
           
-            <label for='date'>When?</label>
+            <label htmlFor='date'>When?</label>
             <input 
               type='date' 
               name='date' 
@@ -73,7 +72,7 @@ export default class NewEventForm extends Component {
               value={this.state.goal}
               onChange={this.saveToState}/>
             
-            <label for='details'>Event Details</label>
+            <label htmlFor='details'>Event Details</label>
             <textarea type='text' 
               name='details' 
               value={this.state.details}
