@@ -1,10 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledPriorityCard = styled.div`
-  border: solid 2px #ccc;
+  border: solid 2px #000;
   margin-bottom: 1rem;
   padding: 0.5rem;
   display: grid;
