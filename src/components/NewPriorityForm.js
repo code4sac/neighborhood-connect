@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import FormStyled from './NewEventForm';
 
 export default class NewPriorityForm extends Component {
     state = {
@@ -11,7 +10,7 @@ export default class NewPriorityForm extends Component {
             <>
         <h2>Add a New Priority</h2>
         <p>What's new in the community?</p>
-        <FormStyled>
+        <div>
           <form 
             name='new-event'
             onSubmit={async e => {
@@ -37,7 +36,7 @@ export default class NewPriorityForm extends Component {
               />
             <button type='submit'>Add Priority</button>
           </form>
-        </FormStyled>
+        </div>
       </>
         )
     }

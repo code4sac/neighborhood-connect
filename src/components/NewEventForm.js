@@ -71,5 +71,3 @@ export default class NewEventForm extends Component {
     )
   }
 }
-
-export { FormStyled }
