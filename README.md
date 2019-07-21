@@ -1,3 +1,6 @@
+#Neighborhood Connect
+A project by code4sac.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
