@@ -5,6 +5,7 @@ import "./App.css";
 import PriorityDetails from "./components/PriorityDetails";
 import PrioritiesPage from "./components/PrioritiesPage";
 import NeighborhoodSelector from "./components/NeighborhoodSelector";
+import NewEventForm from "./components/NewEventForm";
 
 function App() {
   // TO-DO: Change this to retrieve neighborhood value from cookie/localstate
@@ -12,11 +13,16 @@ function App() {
 
   return (
     <Router>
+
       <Route
         exact
         path="/"
         render={props => <PrioritiesPage neighborhood={neighborhood} />}
       />
+
+      <Route exact path="/" component={PrioritiesPage} />
+      <Route exact path="/addevent" component={NewEventForm} />
+
       <Route
         exact
         path="/priorityDetails"
@@ -31,6 +37,12 @@ function App() {
             setNeighborhood={setNeighborhood}
             {...props}
           />
+        )}
+      />
+      <Route
+        exact
+        path="/newEvent"
+        component={NewEventForm}
         )}
       />
     </Router>

@@ -8,7 +8,7 @@ const StyledPriorityCard = styled.div`
   padding: 0.5rem;
   display: grid;
   grid: 6rem / 1fr 8fr;
-  text-decoration: none;
+  textDecoration: none;
   font-size: 1.3rem;
 `;
 
@@ -38,7 +38,7 @@ const PriorityCard = ({ title, rank, description }) => {
   return (
     <Link
       to="/priorityDetails"
-      style={{ "text-decoration": "none", color: "#000", cursor: "pointer" }}
+      style={{ textDecoration: "none", color: "#000", cursor: "pointer" }}
     >
       <StyledPriorityCard>
         <RankWrapper>
