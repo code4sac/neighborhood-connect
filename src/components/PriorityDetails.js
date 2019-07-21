@@ -1,33 +1,9 @@
 import React from "react";
 import Post from "./Post";
-import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { seed, seed2 } from "./seed";
 
-const PriorityDetailsWrapper = styled.div`
-    .details {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-    }
-
-    .details__heading {
-    }
-
-    .details__number {
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        font-size: 1.6rem;
-        width: 2.5rem;
-        height: 2.5rem;
-        border-radius: 50%;
-        border: 0.1rem solid lightgrey;
-        margin-right: 0.5rem;
-    }
-`;
-
+//Test endpoints for GET requests
 const API_PAST = "https://nameless-garden-17654.herokuapp.com";
 const API_UPCOMING = "https://nameless-garden-17654.herokuapp.com";
 const API_ADD = "https://whimsical.com/32AqWM2AASAS7Ja6fqTp9a";
@@ -45,10 +21,10 @@ export default class PriorityDetails extends React.Component {
     }
 
     componentDidMount() {
-        console.log("triggered");
         this.loadPast();
     }
 
+    //Currently mocking API data with seed data
     loadPast() {
         this.setState({
             pastData: seed,
@@ -62,6 +38,8 @@ export default class PriorityDetails extends React.Component {
             toggle: 2
         });
     }
+
+    //Actual AJAX requests for backend API
 
     // loadPast() {
     //   return fetch(API_PAST)
@@ -100,9 +78,8 @@ export default class PriorityDetails extends React.Component {
     // }
 
     render() {
-        console.log(this.state.pastData);
-        console.log(seed);
 
+        //Render Conditionally for Past or Current events, not sure if still needed
         let formedData;
         if (this.state.toggle === 1 && this.state.pastData) {
             formedData = this.state.pastData.map((post, index) => {
@@ -117,10 +94,10 @@ export default class PriorityDetails extends React.Component {
         }
 
         return (
-            <PriorityDetailsWrapper>
+            <div>
                 <div className="details">
-                    <span className="details__number">1</span>
-                    <h2 className="details__heading">Homelessness</h2>
+                    <span>1</span>
+                    <h2>Homelessness</h2>
                 </div>
                 <button onClick={() => this.loadPast()}>Past Events</button>
                 <button onClick={() => this.loadUpcoming()}>Upcoming Events</button>
@@ -128,7 +105,7 @@ export default class PriorityDetails extends React.Component {
                     <button>Add Events</button>
                 </Link>
                 {formedData}
-            </PriorityDetailsWrapper>
+            </div>
         );
     }
 }

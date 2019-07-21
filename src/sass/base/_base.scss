@@ -1,0 +1,16 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+//set browser uniformity font size to always be 10
+html {
+    font-size: 62.5%;
+}
+
+body {
+    box-sizing: border-box;
+}
