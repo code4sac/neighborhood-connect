@@ -1,58 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PriorityCard from "./PriorityCard";
-import Header from './Header';
+import Header from "./Header";
+import axios from "axios";
 import edit from "../assets/edit.svg";
 
+const PrioritiesPage = ({ orgId }) => {
+  const [priorities, setPriorities] = useState([]);
 
-const PrioritiesPage = ({ neighborhood, setNeighborhood }) => {
-  // DUMMY DATA //
-  const priorities = [
-      {
-          title: "Homelessness",
-          tag: "Homelessness",
-          rank: 1,
-          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor. "
-      },
-      {
-          title: "Crime",
-          tag: "Homelessness",
-          rank: 2,
-          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-      },
-      {
-          title: "Graffiti",
-          tag: "Homelessness",
-          rank: 3,
-          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
-      },
-      {
-          title: "Speeding",
-          tag: "Homelessness",
-          rank: 4,
-          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
-      },
-      {
-          title: "Trash",
-          tag: "Homelessness",
-          rank: 5,
-          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
-      }
-  ];
-
-  const renderPriority = ({ title, rank, description }) => {
-    return <PriorityCard title={title} rank={rank} description={description} />;
-  };
-
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const res = await axios.get(
+        `http://localhost:3000/priorities/orgs/${orgId}`
+      );
+      setPriorities(res.data);
+      console.log(res.data);
+    };
+    fetchPosts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <div>
-    <Header title={"Priorities"} optionIcon={edit} option={"/editpriorities"} optionName={"Edit Priorities"}  />
+      <Header
+        title={"Priorities"}
+        optionIcon={edit}
+        option={"/editpriorities"}
+        optionName={"Edit Priorities"}
+      />
       <div className="prioritiesPage">
         <ul>
+          {/* {priorities.map(priority => (
+        <PriorityCard key={} type={} description={} rank={} />
+      ))} */}
           <li>
             <PriorityCard
               rank={1}
               title={"Title of priority"}
-              description={"Brief description of the priority. Brief description of the priority. Brief description of the priority."}
+              description={
+                "Brief description of the priority. Brief description of the priority. Brief description of the priority."
+              }
               tag={"Homelessness"}
             />
           </li>

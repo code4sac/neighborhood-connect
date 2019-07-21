@@ -6,7 +6,7 @@ import PrioritiesPage from "./components/PrioritiesPage";
 import NeighborhoodSelector from "./components/NeighborhoodSelector";
 import NewEventForm from "./components/NewEventForm";
 import NewPriorityForm from "./components/NewPriorityForm";
-import PrioritiesOrderPage from './components/PrioritiesOrderPage';
+import PrioritiesOrderPage from "./components/PrioritiesOrderPage";
 
 function App() {
   // TO-DO: Change this to retrieve neighborhood value from cookie/localstate
@@ -14,11 +14,7 @@ function App() {
 
   return (
     <Router>
-      <Route
-        exact
-        path="/"
-        render={props => <PrioritiesPage neighborhood={neighborhood} />}
-      />
+      <Route exact path="/" render={props => <PrioritiesPage orgId={1} />} />
       <Route
         exact
         path="/priorityDetails"
