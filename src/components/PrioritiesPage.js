@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import PriorityCard from "./PriorityCard";
 
 const PrioritiesPage = ({ neighborhood, setNeighborhood }) => {
@@ -40,9 +41,16 @@ const PrioritiesPage = ({ neighborhood, setNeighborhood }) => {
     return <PriorityCard title={title} rank={rank} description={description} />;
   };
 
+  const selectLocation = () => {
+    return <Redirect to={"/selectNeighborhood"} />
+  }
+
   return (
     <div>
-      <h1>Priorities</h1>
+      <h1>Priorities for {neighborhood}</h1>
+      <button onClick={
+        () => selectLocation()
+        }>Change Location</button>
       <div>
         <ul>
           <li>
