@@ -9,6 +9,7 @@ function App() {
   return (
     <Router>
       <Route exact path="/" component={PrioritiesPage} />
+      <Route exact path="/addevent" component={NewEventForm} />
       <Route
         exact
         path="/priorityDetails"
