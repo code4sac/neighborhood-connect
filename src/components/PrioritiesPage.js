@@ -45,7 +45,7 @@ const PrioritiesPage = ({ neighborhood, setNeighborhood }) => {
 
   return (
     <div>
-    <Header title={"Priorities"} optionIcon={edit} option={"/editpriorities"} optionName={"Edit Priorities"}  />
+    <Header title={"Homelessness"} optionIcon={edit} option={"/addNewEvent"} optionName={"Edit Priorities"}  />
       <div className="prioritiesPage">
         <ul>
           <li>

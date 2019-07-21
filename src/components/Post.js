@@ -1,30 +1,27 @@
 import React from "react";
+import neighborhood from '../assets/neighborhood.svg';
 
 export default class Post extends React.Component {
     render() {
         const { avatar, location, name, date, overview } = this.props.data;
 
         return (
-            <div>
-                <ul className="Post__list">
-                    <li className="Post__item">
-                        <span className="Post__owner">
-                            <span className="Post__image">
-                                <img src={avatar} alt="placeholder" />
-                            </span>
-                            <span>
-                                <h3>{name}</h3>
-                                <p>{date}</p>
-                            </span>
+            <div className="post">
+                <ul className="post__list">
+                    <li className="post__item">
+                        <span className="post__image">
+                            <img src={avatar} alt="placeholder" />
                         </span>
-                        <p>{location}</p>
+                        <span className="post__org">
+                            <h3 className="post__name">{name}</h3>
+                            <p className="post__location"><img className="u-margin-right-smallest" src={neighborhood} alt="location" />{location}</p>
+                        </span>
+                        <span className="post__absolute">
+                            <p className="post__date">{date}</p>
+                        </span>
                     </li>
-                    <li>
-                        <p>{overview}</p>
-                    </li>
-                    <li className="Post__social">
-                        <span>&#10084;</span>
-                        <span>&#8594;</span>
+                    <li className="post__item">
+                        <p className="post__overview">{overview}</p>
                     </li>
                 </ul>
             </div>

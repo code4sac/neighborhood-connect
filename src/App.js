@@ -34,7 +34,7 @@ function App() {
           />
         )}
       />
-      <Route exact path="/addNewEvent" component={NewEventForm} />
+      <Route path="/addNewEvent" component={NewEventForm} />
       <Route exact path="/addNewPriority" component={NewPriorityForm} />
     </Router>
   );
