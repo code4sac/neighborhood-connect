@@ -19,12 +19,7 @@ const PrioritiesPage = ({ orgId }) => {
   }, []);
   return (
     <div>
-      <Header
-        title={"Priorities"}
-        optionIcon={edit}
-        option={"/editpriorities"}
-        optionName={"Edit Priorities"}
-      />
+    <Header title={"Priorities"} optionIcon={edit} option={"/addNewEvent"} optionName={"Edit Priorities"}  />
       <div className="prioritiesPage">
         <ul>
           {priorities.map(priority => (

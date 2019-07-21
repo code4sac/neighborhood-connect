@@ -2,6 +2,8 @@ import React from "react";
 import Post from "./Post";
 import { Link } from "react-router-dom";
 import { seed, seed2 } from "./seed";
+import Header from "./Header";
+import edit from "../assets/edit.svg";
 
 //Test endpoints for GET requests
 const API_PAST = "https://nameless-garden-17654.herokuapp.com";
@@ -95,16 +97,15 @@ export default class PriorityDetails extends React.Component {
 
         return (
             <div>
+                <Header title={"Priorities"} optionIcon={edit} option={"/addNewEvent"} optionName={"Add Event"} />
                 <div className="details">
-                    <span>1</span>
-                    <h2>Homelessness</h2>
+                <div>
+                    <h2 className="details__category">Events</h2>
                 </div>
                 <button onClick={() => this.loadPast()}>Past Events</button>
                 <button onClick={() => this.loadUpcoming()}>Upcoming Events</button>
-                <Link to="/addevent">
-                    <button>Add Events</button>
-                </Link>
                 {formedData}
+            </div>
             </div>
         );
     }
