@@ -1,12 +1,11 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 const PriorityCard = ({ title, rank, description }) => {
   return (
     <Link
       to="/priorityDetails"
-      style={{ "text-decoration": "none", color: "#000", cursor: "pointer" }}
+      style={{ textDecoration: "none", color: "#000", cursor: "pointer" }}
     >
       <div>
         <div>

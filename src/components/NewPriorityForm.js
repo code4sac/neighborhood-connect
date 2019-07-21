@@ -5,6 +5,11 @@ export default class NewPriorityForm extends Component {
         name: '',
         details: '',
     }
+    
+    saveToState = e => {
+      this.setState({ [e.target.name]: e.target.value });
+    }
+    
     render() {
         return (
             <>
@@ -12,23 +17,23 @@ export default class NewPriorityForm extends Component {
         <p>What's new in the community?</p>
         <div>
           <form 
-            name='new-event'
+            name='new-priority'
             onSubmit={async e => {
-              e.preventDefault()
+              e.preventDefault();
               fetch('INSERT__URL', { 
                 method: 'POST',
               body: JSON.stringify(this.state)}
               )
                 .then(this.setState({name:'',details:''}))
             }}>
-            <label for='name'>Priority Name</label>
+            <label htmlFor='name'>Priority Name</label>
             <input 
               type='text' 
               name='name' 
               value={this.state.name}
               onChange={this.saveToState}/>
 
-            <label for='details'>Priority Details</label>
+            <label htmlFor='details'>Priority Details</label>
             <textarea type='text' 
               name='details' 
               value={this.state.details}
