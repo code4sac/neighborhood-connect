@@ -1,0 +1,27 @@
+.btn {
+    
+    &:link,
+    &:visited {
+        width: 13rem;
+        height: 3.5rem;
+        background-color: $color-secondary-blue;
+        color: $color-white-1;
+        border: .1rem solid $color-secondary-blue;
+        border-radius: 2.5rem;
+        padding: .3rem;
+        text-decoration: none;
+        font-size: 1.5rem;
+        display: inline-block;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    &__text {
+        display: flex;
+        justify-content: center;
+    }
+
+    &--aligned {
+        @include btn-aligned-right
+    }
+}
