@@ -15,6 +15,12 @@ const PostStyled = styled.div`
   }
 `;
 
+const Header = styled.div`
+  background-color: blue;
+  height: 400px;
+  width: 100%;
+`;
+
 export default class PostPage extends Component {
   
   share = () => {
@@ -26,11 +32,14 @@ export default class PostPage extends Component {
   render() {
     return (
       <PostStyled>
-        <img src={'an image'} />
-        <h2>Title</h2>
-        <p>07/20/2019</p>
+        <Header>
+          <img src={'an image'} />
+          <h2>Event Title</h2>
+          <p>Event Author</p>
+          <p>07/20/2019</p>
+          <button onClick={() => {this.share()}}> Share </button>
+        </Header>
         <p>Some details of the page event.</p>
-        <button onClick={() => {this.share()}}> Share </button>
       </PostStyled>
     );
   }
