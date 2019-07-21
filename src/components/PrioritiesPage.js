@@ -1,6 +1,7 @@
 import React from "react";
 import PriorityCard from "./PriorityCard";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const PrioritiesWrapper = styled.div`
   margin-bottom: 1rem;
@@ -16,7 +17,7 @@ const StyledTitle = styled.h1`
   font-size: 4rem;
 `;
 
-const PrioritiesPage = () => {
+const PrioritiesPage = ({ neighborhood, setNeighborhood }) => {
   // DUMMY DATA //
   const priorities = [
     {
@@ -58,6 +59,10 @@ const PrioritiesPage = () => {
   return (
     <div>
       <StyledTitle>Priorities</StyledTitle>
+      <span>Neighborhood: {neighborhood}</span>
+      <Link to="/selectNeighborhood">
+        <button>Choose Neighborhood</button>
+      </Link>
       <PrioritiesWrapper>
         <StyledPriorityList>
           {priorities.map(priority => {
