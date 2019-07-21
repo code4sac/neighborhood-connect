@@ -1,5 +1,6 @@
 import React from "react";
 import neighborhood from '../assets/neighborhood.svg';
+import right from '../assets/chevron-right.svg';
 
 export default class Post extends React.Component {
     render() {
@@ -24,6 +25,7 @@ export default class Post extends React.Component {
                         <p className="post__overview">{overview}</p>
                     </li>
                 </ul>
+                <img className="post__arrow" src={right} alt="arrow" />
             </div>
         );
     }
