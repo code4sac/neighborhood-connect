@@ -48,7 +48,6 @@ export default class PrioritiesPage extends React.Component {
       let sortedData = updatedState.priorities.sort((a, b) => (a.rank > b.rank ? 1 : -1));
       this.setState({sortedData});
     }
-    console.log("updated ^", updatedState.priorities);
   }
   
   demoteRank = (priorityIndex) => {
@@ -59,12 +58,10 @@ export default class PrioritiesPage extends React.Component {
       let sortedData = updatedState.priorities.sort((a, b) => (a.rank > b.rank ? 1 : -1));
       this.setState({sortedData});
     }
-    console.log("update V", updatedState.priorities);
   }
 
   render() {
     let sortedData = [...this.state.priorities].sort((a, b) => (a.rank > b.rank ? 1 : -1));
-    console.log(sortedData);
     return (
       <div>
         <h1>Edit Priorities</h1>
