@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import PriorityCard from "./PriorityCard";
 import Header from './Header';
 import edit from "../assets/edit.svg";
@@ -42,6 +43,10 @@ const PrioritiesPage = ({ neighborhood, setNeighborhood }) => {
   const renderPriority = ({ title, rank, description }) => {
     return <PriorityCard title={title} rank={rank} description={description} />;
   };
+
+  const selectLocation = () => {
+    return <Redirect to={"/selectNeighborhood"} />
+  }
 
   return (
     <div>
