@@ -1,21 +1,5 @@
 import React from "react";
 import PriorityCard from "./PriorityCard";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-
-const PrioritiesWrapper = styled.div`
-  margin-bottom: 1rem;
-`;
-
-const StyledPriorityList = styled.ul`
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-`;
-
-const StyledTitle = styled.h1`
-  font-size: 4rem;
-`;
 
 const PrioritiesPage = ({ neighborhood, setNeighborhood }) => {
   // DUMMY DATA //
@@ -58,18 +42,39 @@ const PrioritiesPage = ({ neighborhood, setNeighborhood }) => {
 
   return (
     <div>
-      <StyledTitle>Priorities</StyledTitle>
-      <span>Neighborhood: {neighborhood}</span>
-      <Link to="/selectNeighborhood">
-        <button>Choose Neighborhood</button>
-      </Link>
-      <PrioritiesWrapper>
-        <StyledPriorityList>
-          {priorities.map(priority => {
-            return <li>{renderPriority(priority)}</li>;
-          })}
-        </StyledPriorityList>
-      </PrioritiesWrapper>
+      <h1>Priorities</h1>
+      <div>
+        <ul>
+          <li>
+            <PriorityCard
+              rank={1}
+              title={"Homelessness"}
+              description={"blah blah blah"}
+            />
+          </li>
+          <li>
+            <PriorityCard
+              rank={2}
+              title={"Graffiti"}
+              description={"blah blah blah"}
+            />
+          </li>
+          <li>
+            <PriorityCard
+              rank={3}
+              title={"Crime"}
+              description={"blah blah blah"}
+            />
+          </li>
+          <li>
+            <PriorityCard
+              rank={4}
+              title={"Trash"}
+              description={"blah blah blah"}
+            />
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };

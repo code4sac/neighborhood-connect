@@ -1,19 +1,4 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
-
-const FormStyled = styled.div`
-  label {
-    width: 100%;
-    margin-bottom: 1rem;
-  }
-  input {
-    width: 100%;
-    margin-bottom: 2rem;
-  }
-  textarea {
-    width: 100%;
-  }
-`;
 
 export default class NewEventForm extends Component {
   state = {
@@ -33,7 +18,7 @@ export default class NewEventForm extends Component {
       <>
         <h2>Add a New Event</h2>
         <p>What's up in the community?</p>
-        <FormStyled>
+        <div>
           <form 
             name='new-event'
             onSubmit={async e => {
@@ -80,10 +65,8 @@ export default class NewEventForm extends Component {
               />
             <button type='submit'>Create Event</button>
           </form>
-        </FormStyled>
+        </div>
       </>
     )
   }
 }
-
-export { FormStyled }

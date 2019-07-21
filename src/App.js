@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import "./App.css";
-
 import PriorityDetails from "./components/PriorityDetails";
 import PrioritiesPage from "./components/PrioritiesPage";
 import NeighborhoodSelector from "./components/NeighborhoodSelector";
