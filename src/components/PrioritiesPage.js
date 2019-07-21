@@ -1,12 +1,12 @@
 
 import React, { useEffect, useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import PriorityCard from "./PriorityCard";
 import Header from "./Header";
 import axios from "axios";
 import edit from "../assets/edit.svg";
 
-const PrioritiesPage = ({ orgId }) => {
+const PrioritiesPage = ({ orgId, neighborhood }) => {
   const [priorities, setPriorities] = useState([]);
 
   useEffect(() => {
@@ -27,6 +27,11 @@ const PrioritiesPage = ({ orgId }) => {
     <div>
     <Header title={"Priorities"} optionIcon={edit} option={"/addNewEvent"} optionName={"Edit Priorities"}  />
       <div className="prioritiesPage">
+      <span>Neighborhood: {neighborhood}</span>
+      <Link to={"/selectNeighborhood"}>
+        <button>Choose Neighborhood</button>
+      </Link>
+
         <ul>
           {priorities.map(priority => (
             <li key={priority.id}>
