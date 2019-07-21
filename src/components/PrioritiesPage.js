@@ -50,7 +50,7 @@ const PrioritiesPage = ({ neighborhood, setNeighborhood }) => {
       <div className="prioritiesPage">
       <span>Neighborhood: {neighborhood}</span>
       <Link to={"/selectNeighborhood"}>
-        <button>Choose Neighborhood</button>
+        <button>Change Location</button>
       </Link>
 
         <ul>

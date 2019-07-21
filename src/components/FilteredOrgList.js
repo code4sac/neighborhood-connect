@@ -8,15 +8,20 @@ const FilteredOrgList = (props) => {
         props.searchString.toLowerCase()) !== -1;
     });
   }
-        return (<ul>
+        return (<div className="orgList">
            {
              filterList(props.items).map(function(item) {
                return (
-                <li key={item.id} onClick={() => {props.onSelect(item)}}>{item.name}</li>
+                <div key={item.id}
+                     className="orgListCard"
+                     onClick={() => {props.onSelect(item)}}>
+                  {item.name}
+                </div>
+
                )
              })
            }
-        </ul>)
+        </div>)
 }
 
 export default FilteredOrgList
