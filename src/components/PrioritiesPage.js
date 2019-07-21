@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PriorityCard from "./PriorityCard";
+import LocationHolder from "./LocationHolder";
 import Header from "./Header";
 import axios from "axios";
 import edit from "../assets/edit.svg";
@@ -20,6 +21,7 @@ const PrioritiesPage = ({ orgId }) => {
   return (
     <div>
     <Header title={"Priorities"} optionIcon={edit} option={"/addNewEvent"} optionName={"Edit Priorities"}  />
+      <LocationHolder />
       <div className="prioritiesPage">
         <ul>
           {priorities.map(priority => (

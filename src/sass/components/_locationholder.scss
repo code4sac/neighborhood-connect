@@ -1,0 +1,18 @@
+.locationHolder {
+    background-color: $color-secondary-blue;
+    height: 5.5rem;
+    position: relative;
+    
+    &__name {
+        color: $color-white-1;
+        text-align: center;
+        display: inline-block;
+        padding: 1.5rem 3rem;
+    }
+
+    &__image {
+        width: 1rem;
+        display: inline-block;
+        vertical-align: middle;
+    }
+}
