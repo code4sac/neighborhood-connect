@@ -1,4 +1,6 @@
+
 import React, { useEffect, useState } from "react";
+import { Redirect } from "react-router-dom";
 import PriorityCard from "./PriorityCard";
 import Header from "./Header";
 import axios from "axios";
@@ -17,6 +19,10 @@ const PrioritiesPage = ({ orgId }) => {
     fetchPosts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const selectLocation = () => {
+    return <Redirect to={"/selectNeighborhood"} />
+  }
   return (
     <div>
     <Header title={"Priorities"} optionIcon={edit} option={"/addNewEvent"} optionName={"Edit Priorities"}  />
