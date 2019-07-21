@@ -20,9 +20,7 @@ const PrioritiesPage = ({ orgId, neighborhood }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const selectLocation = () => {
-    return <Redirect to={"/selectNeighborhood"} />
-  }
+
   return (
     <div>
     <Header title={"Priorities"} optionIcon={edit} option={"/addNewEvent"} optionName={"Edit Priorities"}  />
