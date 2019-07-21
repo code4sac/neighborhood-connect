@@ -35,7 +35,7 @@ const NeighborhoodSelector = ({ neighborhood, setNeighborhood }) => {
       {redirect ? (
         <Redirect to={"/"} />
       ) : (
-          <div>
+          <div style={{backgroundColor: "#77c"}}>
           <label for="neighborhood">Neighborhood</label>
           <input
             type="text"
