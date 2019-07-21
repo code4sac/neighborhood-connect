@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import FilteredOrgList from './FilteredOrgList'
+import Header from './Header';
 
 const NeighborhoodSelector = ({ neighborhood, setNeighborhood }) => {
   const [searchString, setSearchString] = useState(neighborhood);
@@ -32,6 +33,14 @@ const NeighborhoodSelector = ({ neighborhood, setNeighborhood }) => {
 
   return (
     <div>
+    <Header>
+    <img alt="title" src={'an image'} />
+    <h2>Event Title</h2>
+    <p>Event Author</p>
+    <p>07/20/2019</p>
+    <button onClick={() => {this.share()}}> Share </button>
+    </Header>
+    <div>
       {redirect ? (
         <Redirect to={"/"} />
       ) : (
@@ -49,6 +58,7 @@ const NeighborhoodSelector = ({ neighborhood, setNeighborhood }) => {
             onSelect={setNeighborhood} onSelect={handleSelect}/>
         </div>
       )}
+    </div>
     </div>
   );
 };
