@@ -18,7 +18,6 @@ function App() {
         render={props => <PrioritiesPage neighborhood={neighborhood} />}
       />
 
-      <Route exact path="/" component={PrioritiesPage} />
       <Route exact path="/addevent" component={NewEventForm} />
 
       <Route
@@ -41,7 +40,6 @@ function App() {
         exact
         path="/newEvent"
         component={NewEventForm}
-        )}
       />
     </Router>
   );
