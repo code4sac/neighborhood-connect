@@ -1,0 +1,25 @@
+.priorityCard {
+    text-decoration: none;
+    border: .1rem solid $color-grey-2;
+    border-radius: .7rem;
+    box-shadow: 0 .1rem .3rem rgba($color-black-2, .1);
+    margin-bottom: 1rem;
+    
+
+    &__banner {
+        display: flex;
+        justify-content: space-between;
+        background-color: $color-primary-blue;
+        border-radius: .5rem;
+        border-bottom-left-radius: .3rem;
+        border-bottom-right-radius: .3rem;
+        height: 2.5rem;
+        font-size: 1.3rem;
+        color: $color-white-1;
+        padding: 0 2rem;
+    }
+
+    &__overview {
+        padding: .1rem 2rem 1rem 2rem;
+    }
+}
