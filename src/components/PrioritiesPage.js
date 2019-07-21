@@ -12,8 +12,7 @@ const PrioritiesPage = ({ orgId }) => {
       const res = await axios.get(
         `http://localhost:3000/priorities/orgs/${orgId}`
       );
-      setPriorities(res.data);
-      console.log(res.data);
+      setPriorities(res.data.rows);
     };
     fetchPosts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -28,43 +27,15 @@ const PrioritiesPage = ({ orgId }) => {
       />
       <div className="prioritiesPage">
         <ul>
-          {/* {priorities.map(priority => (
-        <PriorityCard key={} type={} description={} rank={} />
-      ))} */}
-          <li>
-            <PriorityCard
-              rank={1}
-              title={"Title of priority"}
-              description={
-                "Brief description of the priority. Brief description of the priority. Brief description of the priority."
-              }
-              tag={"Homelessness"}
-            />
-          </li>
-          <li>
-            <PriorityCard
-              rank={2}
-              title={"Graffiti"}
-              description={"blah blah fffffffffffffffffffffffffffffff  blah"}
-              tag={"Homelessness"}
-            />
-          </li>
-          <li>
-            <PriorityCard
-              rank={3}
-              title={"Crime"}
-              description={"blah blah blah"}
-              tag={"Homelessness"}
-            />
-          </li>
-          <li>
-            <PriorityCard
-              rank={4}
-              title={"Trash"}
-              description={"blah blah blah"}
-              tag={"Homelessness"}
-            />
-          </li>
+          {priorities.map(priority => (
+            <li key={priority.id}>
+              <PriorityCard
+                type={"Priority type will go here"}
+                description={priority.description}
+                rank={priority.rank}
+              />
+            </li>
+          ))}
         </ul>
       </div>
     </div>
