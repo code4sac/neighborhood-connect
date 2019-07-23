@@ -4,7 +4,7 @@ import axios from "axios";
 
 import FilteredOrgList from './FilteredOrgList'
 import Header from './Header';
-import apiUrl from '../config';
+import { apiUrl } from '../config';
 
 const NeighborhoodSelector = ({ neighborhood, setNeighborhood }) => {
   const [searchString, setSearchString] = useState(neighborhood);
