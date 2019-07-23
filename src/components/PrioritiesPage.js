@@ -20,17 +20,13 @@ const PrioritiesPage = ({ orgId, neighborhood }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-
+  //neighborhood is undefined
+  console.log("current neighborhood:", neighborhood);
   return (
     <div>
     <Header title={"Priorities"} optionIcon={edit} option={"/addNewEvent"} optionName={"Edit Priorities"}  />
-      <LocationHolder />
+      <LocationHolder hood={neighborhood} />
       <div className="prioritiesPage">
-      <span>Neighborhood: {neighborhood}</span>
-      <Link to={"/selectNeighborhood"}>
-        <button>Change Location</button>
-      </Link>
-
         <ul>
           {priorities.map(priority => (
             <li key={priority.id}>

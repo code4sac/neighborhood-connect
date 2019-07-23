@@ -9,10 +9,12 @@ body {
 .heading-primary {
     color: $color-white-1;
     font-weight: 700;
+    font-size: 4.5rem;
+    letter-spacing: .15rem;
 }
 
 .heading-secondary {
-    color: $color-black-1;
+    color: $color-grey-dark-1;
     font-size: 2rem;
     font-weight: 400;
 }

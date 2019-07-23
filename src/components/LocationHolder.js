@@ -1,5 +1,5 @@
 import React from 'react';
-import right from '../assets/chevron-right.svg'
+import whiteArrow from '../assets/chevron-right-white.svg'
 import { Link } from 'react-router-dom';
 
 export default class LocationHolder extends React.Component {
@@ -7,11 +7,12 @@ export default class LocationHolder extends React.Component {
         return (
             <div className="locationHolder">
                 <Link to="/selectNeighborhood">
-                <p className="locationHolder__name">
-                    Change Location <img className="locationHolder__image" src={right} alt="arrow" />
-                </p>
+                    <p className="locationHolder__change">
+                        Change Location <img className="locationHolder__image chevronArrow" src={whiteArrow} alt="arrow" />
+                    </p>
                 </Link>
-                <div className="seperator"></div>
+                <div className="seperator" />
+                <div className="locationHolder__current">Location Name{this.props.hood}</div>
             </div>
         );
     }

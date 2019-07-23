@@ -1,6 +1,6 @@
 import React from "react";
 import neighborhood from '../assets/neighborhood.svg';
-import right from '../assets/chevron-right.svg';
+import right from '../assets/chevron-right-white.svg';
 
 export default class Post extends React.Component {
     render() {

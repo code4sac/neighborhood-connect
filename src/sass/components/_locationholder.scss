@@ -2,17 +2,24 @@
     background-color: $color-secondary-blue;
     height: 5.5rem;
     position: relative;
+    color: $color-white-1;
     
-    &__name {
+    &__change {
         color: $color-white-1;
         text-align: center;
         display: inline-block;
-        padding: 1.5rem 3rem;
+        padding: 1.5rem 2rem 1.5rem 3rem;
+        font-weight: 700;
+        font-size: 1.5rem;
+        letter-spacing: .1rem;
     }
 
     &__image {
-        width: 1rem;
         display: inline-block;
         vertical-align: middle;
+        margin-left: .4rem;
+    }
+
+    &__current {
     }
 }
