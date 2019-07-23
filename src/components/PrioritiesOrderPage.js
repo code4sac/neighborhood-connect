@@ -8,30 +8,35 @@ export default class PrioritiesPage extends React.Component {
     priorities: [
       {
         title: "Homelessness",
+        priorityId: '00001', //this should be a UID sent form the db
         rank: 1,
         description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor. "
       },
       {
         title: "Crime",
+        priorityId: '00002',
         rank: 2,
         description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
       },
       {
         title: "Graffiti",
+        priorityId: '00003',
         rank: 3,
         description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
       },
       {
         title: "Speeding",
+        priorityId: '00004',
         rank: 4,
         description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
       },
       {
         title: "Trash",
+        priorityId: '00005',
         rank: 5,
         description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
@@ -75,7 +80,7 @@ export default class PrioritiesPage extends React.Component {
           <ul>
             {sortedData.map((priority, index) => {
               return (
-                <li key={priority.title}>
+                <li key={priority.priorityId}>
                   <PriorityCard
                     rank={priority.rank}
                     title={priority.title}
