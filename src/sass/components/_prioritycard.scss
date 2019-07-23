@@ -3,9 +3,9 @@
     border: .1rem solid $color-grey-2;
     border-radius: .7rem;
     box-shadow: 0 .1rem .3rem rgba($color-black-2, .1);
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+    position: relative;
     
-
     &__banner {
         display: flex;
         justify-content: space-between;
@@ -16,10 +16,16 @@
         height: 2.5rem;
         font-size: 1.3rem;
         color: $color-white-1;
-        padding: 0 2rem;
+        padding: .2rem 2rem;
     }
 
     &__overview {
         padding: .1rem 2rem 1rem 2rem;
+    }
+
+    &__image {
+        position: absolute;
+        top: 55%;
+        right: 3%;
     }
 }
