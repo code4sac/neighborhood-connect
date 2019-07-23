@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Redirect, Link } from "react-router-dom";
 import PriorityCard from "./PriorityCard";
 import LocationHolder from "./LocationHolder";
 import Header from "./Header";
@@ -24,7 +23,7 @@ const PrioritiesPage = ({ orgId, neighborhood }) => {
   console.log("current neighborhood:", neighborhood);
   return (
     <div>
-    <Header title={"Priorities"} optionIcon={edit} option={"/addNewEvent"} optionName={"Edit Priorities"}  />
+      <Header title={"Priorities"} optionIcon={edit} option={"/addNewEvent"} optionName={"Edit Priorities"} />
       <LocationHolder hood={neighborhood} />
       <div className="prioritiesPage">
         <ul>
