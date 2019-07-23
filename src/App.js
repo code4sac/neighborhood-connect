@@ -16,7 +16,7 @@ function App() {
 
   return (
     <Router>
-      <Route exact path="/" render={props => <PrioritiesPage orgId={1} />} />
+      <Route exact path="/" render={props => <PrioritiesPage orgId={1} neighborhood={neighborhood} {...props} />} />
       <Route
         exact
         path="/priorityDetails"
@@ -35,7 +35,7 @@ function App() {
       />
       <Route path="/addNewEvent" component={NewEventForm} />
       <Route exact path="/addNewPriority" component={NewPriorityForm} />
-      <Route exact path="/sort" component={PrioritiesOrderPage} />
+      <Route exact path="/editPriorities" component={PrioritiesOrderPage} />
       <Route exact path="/login" component={Login} />
     </Router>
   );
