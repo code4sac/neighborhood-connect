@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Redirect, Link } from "react-router-dom";
+import axios from "axios";
+
 import PriorityCard from "./PriorityCard";
 import LocationHolder from "./LocationHolder";
 import Header from "./Header";
-import axios from "axios";
 import edit from "../assets/edit.svg";
+import { apiUrl } from '../config';
 
 const PrioritiesPage = ({ orgId, neighborhood }) => {
   const [priorities, setPriorities] = useState([]);
@@ -12,7 +13,7 @@ const PrioritiesPage = ({ orgId, neighborhood }) => {
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await axios.get(
-        `http://localhost:3000/priorities/orgs/${orgId}`
+        `${apiUrl}/orgs/${orgId}`
       );
       setPriorities(res.data.rows);
     };
