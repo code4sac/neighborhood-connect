@@ -1,26 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect,  } from "react";
 import { Redirect } from "react-router-dom";
 import FilteredOrgList from './FilteredOrgList'
 import Header from './Header';
+import axios from "axios";
 
 const NeighborhoodSelector = ({ neighborhood, setNeighborhood }) => {
   const [searchString, setSearchString] = useState(neighborhood);
   const [redirect, setRedirect] = useState(false);
+  const [organizations, setOrganizations] = useState([]);
+  console.log("res HELLO")
+  useEffect(() => {
+    const fetchOrgs = async () => {
+      const res = await axios.get(
+        `http://localhost:3000/orgs`
+      )
+      setOrganizations(res.data.rows)
 
-  const tempOrganizations = [
-    {id: 0, name: 'AlkaLi and mansion flats historic neighborhood ASSOCIATION'},
-    {id: 1, name: 'Avondale/Glen Elder Neighborhood Association (AGENA)'},
-    {id: 2, name: 'Ben Ali Community ASSOCIATION'},
-    {id: 3, name: 'Beverly Way Neighborhood ASSOCIATION'},
-    {id: 4, name: 'Boulevard Park neighborhood ASSOCIATION'},
-    {id: 5, name: 'Brentwood South Neighborhood ASSOCIATION'},
-    {id: 6, name: 'Brookfield Homeowners Association'},
-    {id: 7, name: 'Old North Sacramento/Dixieanne COMMUNITY ASSOCIATION'},
-    {id: 8, name: 'North Sacramento Chamber of Commerce'},
-    {id: 9, name: 'River City Commons'},
-    {id: 10, name: 'River Grove Homeowners Association'},
-    {id: 11, name: 'River Oaks Community ASSOCIATION (ROCA)'},
-    {id: 12, name: 'River Park Neighborhood ASSOCIATION'}]
+    }
+    fetchOrgs();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleSelect = org => {
     setNeighborhood(org.name);
@@ -45,17 +44,17 @@ const NeighborhoodSelector = ({ neighborhood, setNeighborhood }) => {
         <Redirect to={"/"} />
       ) : (
           <div style={{backgroundColor: "#77c"}}>
-          <label for="neighborhood">Neighborhood</label>
+          <label htmlFor="neighborhood">Neighborhood</label>
           <input
-            type="text"
+            type="search"
             id="neighborhood"
             value={searchString}
             onChange={handleChange}
           />
           <FilteredOrgList
-            items={tempOrganizations}
+            items={organizations}
             searchString={searchString}
-            onSelect={setNeighborhood} onSelect={handleSelect}/>
+             onSelect={handleSelect}/>
         </div>
       )}
     </div>
