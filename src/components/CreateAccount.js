@@ -7,11 +7,14 @@ export default class CreateAccount extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
+      first_name: '',
+      last_name: '',
       email: '',
+      phone: '',
       password: '',
       passwordConfirm: '',
       neighborhoods: [],
+      organization_id: ''
     }
   }
 
@@ -38,26 +41,66 @@ export default class CreateAccount extends Component {
         <h2>Create and Account</h2>
         <form
           method='POST'
-          action='/users'
-        >
-          <label htmlFor='name'>
-            Name
+          onSubmit={async e => {
+            e.preventDefault();
+            // fetch below does send correct request, backend not propped for db queries.
+            fetch(`${apiUrl}/users`, {
+              method: 'POST',
+              mode: 'cors',
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                first_name: this.state.first_name,
+                last_name: this.state.last_name,
+                email: this.state.email,
+                phone: this.state.phone,
+                password: this.state.password,
+              })
+            })
+              .then(response => (
+                this.setState({ first_name: '', last_name: '', email: '', phone: '', password: '', passwordConfirm: '' })
+              ))
+          }}>
+          >
+          <label htmlFor='first_name'>
+            First Name
             <input
               required
               type='text'
-              name='name'
-              placeholder='name'
-              value={this.state.name}
+              name='first_name'
+              placeholder='first'
+              value={this.state.first_name}
+              onChange={this.saveToState}
+            />
+          </label>
+          <label htmlFor='last_name'>
+            Last Name
+            <input
+              required
+              type='text'
+              name='last_name'
+              placeholder='last'
+              value={this.state.last_name}
               onChange={this.saveToState}
             />
           </label>
           <label htmlFor='email'>
             Email
             <input
+              required
               type='email'
               name='email'
               placeholder='email'
               value={this.state.email}
+              onChange={this.saveToState}
+            />
+          </label>
+          <label htmlFor='phone'>
+            Phone
+            <input
+              type='text'
+              name='phone'
+              placeholder='1234567890'
+              value={this.state.phone}
               onChange={this.saveToState}
             />
           </label>
@@ -87,4 +130,3 @@ export default class CreateAccount extends Component {
     )
   }
 }
-
