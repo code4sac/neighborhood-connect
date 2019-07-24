@@ -1,5 +1,9 @@
 import React from "react";
 import PriorityCard from "./PriorityCard";
+import Header from './Header';
+import LocationHolder from "./LocationHolder";
+
+import edit from "../assets/edit.svg";
 
 export default class PrioritiesOrderPage extends React.Component {
   // DUMMY DATA //
@@ -69,14 +73,10 @@ export default class PrioritiesOrderPage extends React.Component {
     let sortedData = [...this.state.priorities].sort((a, b) => (a.rank > b.rank ? 1 : -1));
     return (
       <div>
-        <h1>Edit Priorities</h1>
+        <Header title={"Priorities"} optionIcon={edit} option={"/editPriorities"} optionName={"Edit Priorities"} />
+        <LocationHolder hood={"neighborhood"} />
         <div>
-          <h2>Add New Priority</h2>
-          <p>Noticed something new in your comunity?</p>
-        </div>
-        <div>
-          <h2>Rearrange Priorities</h2>
-          <p>Change the priority order by selecting the arrows.</p>
+          <h2 style={{ color: '#6A81AC' }}>Rearrange Priorities</h2>
           <ul>
             {sortedData.map((priority, index) => {
               return (
