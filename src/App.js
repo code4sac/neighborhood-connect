@@ -13,7 +13,7 @@ import CreateAccount from "./components/CreateAccount";
 
 function App() {
   // TO-DO: Change this to retrieve neighborhood value from cookie/localstate
-  const [neighborhood, setNeighborhood] = useState("Sacramento");
+  const [neighborhood, setNeighborhood] = useState("");
   // TO-DO: Add state hook to store the neighborhoodId in addition to hood name
 
   return (

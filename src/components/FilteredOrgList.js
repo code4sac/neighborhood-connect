@@ -1,4 +1,5 @@
 import React from 'react'
+import locationPlaceholder from '../assets/locationPlaceholder.svg';
 
 const FilteredOrgList = (props) => {
 
@@ -8,24 +9,33 @@ const FilteredOrgList = (props) => {
         props.searchString.toLowerCase()) !== -1;
     });
   }
+    const placeholder = <img src={locationPlaceholder} alt="placeholder" />;
+
+    let orgListData = filterList(props.items).map(function(item, index) {
         return (
-            <div className="orgList">
-                {filterList(props.items).map(function(item, index) {
-                    return (
-                        <div
-                            index={index}
-                            key={item.id}
-                            className="orgList__card"
-                            onClick={() => {
-                                props.onSelect(item);
-                            }}
-                        >
-                            {item.name}
-                        </div>
-                    );
-                })}
+            <div
+                index={index}
+                key={item.id}
+                className="orgList__card"
+                style={{ animationDelay: `${index / 15}s` }}
+                onClick={() => {
+                    props.onSelect(item);
+                }}
+            >
+                {item.name}
+                <span className="orgList__add">+</span>
             </div>
         );
+    });
+
+    console.log(props)
+    let orgList = props.searchString ? orgListData : placeholder;
+
+    return (
+        <div className="orgList">
+            {orgList}
+        </div>
+    );
 }
 
 export default FilteredOrgList
