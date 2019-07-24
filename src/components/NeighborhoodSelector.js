@@ -6,6 +6,7 @@ import FilteredOrgList from './FilteredOrgList'
 import Header from './Header';
 import { apiUrl } from '../config';
 
+
 const NeighborhoodSelector = ({ neighborhood, setNeighborhood }) => {
   const [searchString, setSearchString] = useState(neighborhood);
   const [redirect, setRedirect] = useState(false);
@@ -47,6 +48,7 @@ const NeighborhoodSelector = ({ neighborhood, setNeighborhood }) => {
         ) : (
             <div className="searchform u-margin-top-smallest">
               <form className="searchform__form">
+               
                 <label className="searchform__label" htmlFor="neighborhood">Neighborhood</label>
                 <input
                   className="searchform__search u-margin-top-smallest u-outline-blue"
@@ -55,7 +57,7 @@ const NeighborhoodSelector = ({ neighborhood, setNeighborhood }) => {
                   // value={searchString} what does this do?
                   onChange={handleChange}
                   placeholder="Search Locations"
-                />
+                />  
               </form>
               <FilteredOrgList
                 items={organizations}
