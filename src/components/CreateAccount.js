@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import { apiUrl } from '../config';
+
 export default class CreateAccount extends Component {
   constructor(props) {
     super(props);
@@ -12,15 +14,15 @@ export default class CreateAccount extends Component {
       neighborhoods: [],
     }
   }
-  
+
   saveToState = e => {
     this.setState({ [e.target.name]: e.target.value });
   }
 
   componentDidMount() {
-    axios.get('http://localhost:3000/orgs')
-      .then((response)  => {
-        let newState = {...this.state};
+    axios.get(`${apiUrl}/orgs`)
+      .then((response) => {
+        let newState = { ...this.state };
         newState.neighborhoods = response.data.rows;
         this.setState(newState);
         console.log(this.state.neighborhoods);
@@ -35,8 +37,8 @@ export default class CreateAccount extends Component {
       <>
         <h2>Create and Account</h2>
         <form
-            method='POST'
-            action='/createAccount'
+          method='POST'
+          action='/users'
         >
           <label htmlFor='name'>
             Name
