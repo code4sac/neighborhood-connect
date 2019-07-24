@@ -45,14 +45,18 @@ const NeighborhoodSelector = ({ neighborhood, setNeighborhood }) => {
         {redirect ? (
           <Redirect to={"/"} />
         ) : (
-            <div style={{ backgroundColor: "#77c" }}>
-              <label htmlFor="neighborhood">Neighborhood</label>
-              <input
-                type="search"
-                id="neighborhood"
-                value={searchString}
-                onChange={handleChange}
-              />
+            <div className="searchform u-margin-top-smallest">
+              <form className="searchform__form">
+                <label className="searchform__label" htmlFor="neighborhood">Neighborhood</label>
+                <input
+                  className="searchform__search u-margin-top-smallest u-outline-blue"
+                  type="search"
+                  id="neighborhood"
+                  // value={searchString} what does this do?
+                  onChange={handleChange}
+                  placeholder="Search Locations"
+                />
+              </form>
               <FilteredOrgList
                 items={organizations}
                 searchString={searchString}
