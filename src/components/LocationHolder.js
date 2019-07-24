@@ -12,7 +12,7 @@ export default class LocationHolder extends React.Component {
                     </p>
                 </Link>
                 <div className="seperator" />
-                <div className="locationHolder__current">Location Name{this.props.hood}</div>
+                <div className="locationHolder__current">{this.props.hood}</div>
             </div>
         );
     }
