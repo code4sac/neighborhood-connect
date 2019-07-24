@@ -100,7 +100,7 @@ export default class PriorityDetails extends React.Component {
                 <Header title={"Priorities"} optionIcon={edit} option={"/addNewEvent"} optionName={"Add Event"} />
                 <div className="details">
                 <div>
-                    <h2 className="details__category">Events</h2>
+                    <h2 className="heading-secondary">Events</h2>
                 </div>
                 <button onClick={() => this.loadPast()}>Past Events</button>
                 <button onClick={() => this.loadUpcoming()}>Upcoming Events</button>

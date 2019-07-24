@@ -14,6 +14,11 @@ body {
 }
 
 .heading-secondary {
+    font-size: 1.7rem;
+    color: $color-secondary-blue;
+}
+
+.heading-tertiary {
     color: $color-grey-dark-1;
     font-size: 2rem;
     font-weight: 400;

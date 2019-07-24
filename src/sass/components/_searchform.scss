@@ -1,0 +1,32 @@
+.searchform {
+
+    &__form {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    &__label {
+        font-size: 1.7rem;
+        color: $color-secondary-blue;
+        font-weight: 700;
+    }
+
+    &__search {
+        align-self: center;
+        border: .1rem solid $color-grey-3;
+        background-color: $color-white-2;
+        border-radius: 2.5rem;
+        width: 30rem;
+        height: 4.5rem;
+        font-size: 1.8rem;
+        padding: 1rem 2rem;
+
+        &:active,
+        &:focus {
+            outline: none;
+            border: .2rem solid $color-primary-blue;
+        }
+    }
+}

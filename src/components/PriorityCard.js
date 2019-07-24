@@ -10,7 +10,7 @@ const PriorityCard = ({ rank, type, description, promote, demote, location }) =>
         <p>{location}</p>
       </div>
       <div className="priorityCard__overview">
-        <h2 className="heading-secondary">{type}</h2>
+        <h2 className="heading-tertiary">{type}</h2>
         <p className="descriptions">{description}</p>
       </div>
       {(location === '/editPriorities') && (
