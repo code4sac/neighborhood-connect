@@ -9,13 +9,13 @@ import Header from "./Header";
 import edit from "../assets/edit.svg";
 import { apiUrl } from '../config';
 
-const PrioritiesPage = ({ orgId, neighborhood }) => {
+const PrioritiesPage = ({ orgId, setOrgId, neighborhood }) => {
   const [priorities, setPriorities] = useState([]);
 
   useEffect(() => {
-    const fetchPosts = async () => {
+    const fetchPosts = async (neighborhood) => {
       const res = await axios.get(
-        `${apiUrl}/orgs` //need to filter for orgs in locations
+        `${apiUrl}/priorities/orgs/${orgId}` //need to filter for orgs in locations
       );
       setPriorities(res.data);
     };
@@ -23,7 +23,7 @@ const PrioritiesPage = ({ orgId, neighborhood }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (neighborhood === '') return <Redirect to='/selectNeighborhood' />
+  if (orgId === null) return <Redirect to='/selectNeighborhood' />
   return (
     <div>
       <Header title={"Priorities"} optionIcon={edit} option={"/editPriorities"} optionName={"Edit Priorities"} />
@@ -32,8 +32,10 @@ const PrioritiesPage = ({ orgId, neighborhood }) => {
         <ul>
           {priorities.map(priority => (
             <li key={priority.id}>
+              {/* can later make visible with priority.visibility */}
               <PriorityCard
-                type={priority.type}
+                id={priority.id}
+                type={priority.prioritytype}
                 description={priority.description}
                 rank={priority.rank}
               />
