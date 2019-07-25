@@ -28,8 +28,9 @@ const FilteredOrgList = (props) => {
         );
     });
 
-    console.log(props)
-    let orgList = props.searchString ? orgListData : placeholder;
+    // console.log(props)
+    // let orgList = props.searchString ? orgListData : placeholder;
+    let orgList = orgListData;
 
     return (
         <div className="orgList">
