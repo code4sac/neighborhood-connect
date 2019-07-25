@@ -1,19 +1,21 @@
 .btn {
-    
     &:link,
     &:visited {
-        width: 13rem;
+        max-width: 14rem;
+        min-width: 10rem;
         height: 3.5rem;
-        background-color: $color-secondary-blue;
         color: $color-white-1;
-        border: .1rem solid $color-secondary-blue;
         border-radius: 2.5rem;
-        padding: .3rem;
+        padding: .3rem 1.3rem;
         text-decoration: none;
         font-size: 1.5rem;
         display: inline-block;
         text-align: center;
         cursor: pointer;
+        overflow: hidden;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     &__text {
@@ -23,5 +25,15 @@
 
     &--aligned {
         @include btn-aligned-right
+    }
+
+    &--primary-blue {
+        background-color: $color-primary-blue;
+        border: .1rem solid $color-primary-blue;
+    }
+
+    &--secondary-blue {
+        background-color: $color-secondary-blue;
+        border: .1rem solid $color-secondary-blue;
     }
 }
