@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Header from './Header'
 
-export default class PostPage extends Component {
+export default class ActionPage extends Component {
     share = () => {
         var url = "http://google.com";
         var text = "Replace this with your text";
@@ -11,8 +11,8 @@ export default class PostPage extends Component {
     render() {
         return (
             <div>
-                <Header>
-                    <img src={"an image"} alt={'alt placeholder'} />
+                <Header option={"/newAction"}>
+                    <img src={"an image"} alt="text about it" />
                     <h2>Event Title</h2>
                     <p>Event Author</p>
                     <p>07/20/2019</p>
