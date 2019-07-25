@@ -9,7 +9,7 @@ const FilteredOrgList = (props) => {
         props.searchString.toLowerCase()) !== -1;
     });
   }
-    const placeholder = <img src={locationPlaceholder} alt="placeholder" />;
+    const placeholder = <img src={locationPlaceholder} alt="placeholder" style={{ marginTop: "15vh" }}/>;
 
     let orgListData = filterList(props.items).map(function(item, index) {
         return (
@@ -28,8 +28,9 @@ const FilteredOrgList = (props) => {
         );
     });
 
-    console.log(props)
-    let orgList = props.searchString ? orgListData : placeholder;
+    // console.log(props)
+    // let orgList = props.searchString ? orgListData : placeholder;
+    let orgList = orgListData;
 
     return (
         <div className="orgList">
