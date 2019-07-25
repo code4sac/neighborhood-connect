@@ -1,5 +1,6 @@
 import React from "react";
-import neighborhood from '../assets/neighborhood.svg';
+import neighborhood from "../assets/neighborhood.svg";
+import right from "../assets/chevron-right-white.svg";
 
 export default class Action extends React.Component {
     render() {
@@ -14,7 +15,10 @@ export default class Action extends React.Component {
                         </span>
                         <span className="action__org">
                             <h3 className="action__name">{name}</h3>
-                            <p className="action__location"><img className="u-margin-right-smallest" src={neighborhood} alt="location" />{location}</p>
+                            <p className="action__location">
+                                <img className="u-margin-right-smallest" src={neighborhood} alt="location" />
+                                {location}
+                            </p>
                         </span>
                         <span className="action__absolute">
                             <p className="action__date">{date}</p>
@@ -24,6 +28,7 @@ export default class Action extends React.Component {
                         <p className="action__overview">{overview}</p>
                     </li>
                 </ul>
+                <img className="action__arrow" src={right} alt="arrow" />
             </div>
         );
     }
