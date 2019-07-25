@@ -6,6 +6,7 @@
     border: .1rem solid $color-grey-2;
     border-radius: .7rem;
     box-shadow: 0 .1rem .3rem rgba($color-black-2, .1);
+    position: relative;
 
     &__list {
         list-style-type: none;
@@ -57,5 +58,12 @@
     &__location {
         display: flex;
         color: $color-grey-1;
+    }
+
+    &__arrow {
+        width: 1rem;
+        position: absolute;
+        right: 5%;
+        top: 50%;
     }
 }

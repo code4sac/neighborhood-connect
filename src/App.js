@@ -9,6 +9,7 @@ import NewPriorityForm from "./components/NewPriorityForm";
 import PrioritiesOrderPage from './components/PrioritiesOrderPage';
 import Login from './components/Login';
 import CreateAccount from "./components/CreateAccount";
+import ActionsPage from "./components/ActionsPage";
 
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
       <Route exact path="/addNewPriority" component={NewPriorityForm} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/createAccount" component={CreateAccount} />
+      <Route exact path="/actions" component={ActionsPage} />
     </Router>
   );
 }

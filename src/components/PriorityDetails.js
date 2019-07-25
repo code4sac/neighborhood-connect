@@ -1,5 +1,5 @@
 import React from "react";
-import Post from "./Post";
+import Action from "./Action";
 // import { Link } from "react-router-dom";
 import { seed, seed2 } from "./seed";
 import Header from "./Header";
@@ -85,13 +85,13 @@ export default class PriorityDetails extends React.Component {
         let formedData;
         if (this.state.toggle === 1 && this.state.pastData) {
             formedData = this.state.pastData.map((post, index) => {
-                return <Post data={post} index={index} key={index} />;
+                return <Action data={post} index={index} key={index} />;
             });
         }
 
         if (this.state.toggle === 2 && this.state.upcomingData) {
             formedData = this.state.upcomingData.map((post, index) => {
-                return <Post data={post} index={index} key={index} />;
+                return <Action data={post} index={index} key={index} />;
             });
         }
 
