@@ -1,14 +1,14 @@
 import React from "react";
 import Post from "./Post";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { seed, seed2 } from "./seed";
 import Header from "./Header";
 import edit from "../assets/edit.svg";
 
 //Test endpoints for GET requests
-const API_PAST = "https://nameless-garden-17654.herokuapp.com";
-const API_UPCOMING = "https://nameless-garden-17654.herokuapp.com";
-const API_ADD = "https://whimsical.com/32AqWM2AASAS7Ja6fqTp9a";
+// const API_PAST = "https://nameless-garden-17654.herokuapp.com";
+// const API_UPCOMING = "https://nameless-garden-17654.herokuapp.com";
+// const API_ADD = "https://whimsical.com/32AqWM2AASAS7Ja6fqTp9a";
 
 export default class PriorityDetails extends React.Component {
     constructor(props) {
@@ -99,13 +99,13 @@ export default class PriorityDetails extends React.Component {
             <div>
                 <Header title={"Priorities"} optionIcon={edit} option={"/addNewEvent"} optionName={"Add Event"} />
                 <div className="details">
-                <div>
-                    <h2 className="heading-secondary">Events</h2>
+                    <div>
+                        <h2 className="heading-secondary">Events</h2>
+                    </div>
+                    <button onClick={() => this.loadPast()}>Past Events</button>
+                    <button onClick={() => this.loadUpcoming()}>Upcoming Events</button>
+                    {formedData}
                 </div>
-                <button onClick={() => this.loadPast()}>Past Events</button>
-                <button onClick={() => this.loadUpcoming()}>Upcoming Events</button>
-                {formedData}
-            </div>
             </div>
         );
     }
