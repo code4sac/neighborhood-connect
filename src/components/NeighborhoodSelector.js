@@ -1,13 +1,14 @@
 import React, { useState, useEffect, } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
+import PropTypes from 'prop-types';
 
 import FilteredOrgList from './FilteredOrgList'
 import Header from './Header';
 import { apiUrl } from '../config';
 
 
-const NeighborhoodSelector = ({ neighborhood, setNeighborhood }) => {
+const NeighborhoodSelector = ({ neighborhood, setNeighborhood, setOrgId }) => {
   const [searchString, setSearchString] = useState(neighborhood);
   const [redirect, setRedirect] = useState(false);
   const [organizations, setOrganizations] = useState([]);
@@ -18,15 +19,16 @@ const NeighborhoodSelector = ({ neighborhood, setNeighborhood }) => {
         `${apiUrl}/orgs`
       )
       setOrganizations(res.data)
-
     }
     fetchOrgs();
     setSearchString('')
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleSelect = org => {
+  const handleSelectNeighborhood = org => {
     setNeighborhood(org.name);
+    setOrgId(org.id);
+    localStorage.setItem('orgId', `${org.id}`)
     setRedirect(true);
   };
 
@@ -43,7 +45,7 @@ const NeighborhoodSelector = ({ neighborhood, setNeighborhood }) => {
         ) : (
             <div className="searchform u-margin-top-smallest">
               <form className="searchform__form">
-               
+
                 <label className="searchform__label" htmlFor="neighborhood">Neighborhood</label>
                 <input
                   className="searchform__search u-margin-top-smallest u-outline-blue"
@@ -51,17 +53,23 @@ const NeighborhoodSelector = ({ neighborhood, setNeighborhood }) => {
                   id="neighborhood"
                   onChange={handleChange}
                   placeholder="Search Locations"
-                />  
+                />
               </form>
               <FilteredOrgList
-                items={organizations}
+                orgs={organizations}
                 searchString={searchString}
-                onSelect={handleSelect} />
+                onSelect={handleSelectNeighborhood} />
             </div>
           )}
       </div>
     </div>
   );
 };
+
+NeighborhoodSelector.propTypes = {
+  neighborhood: PropTypes.string,
+  setNeighborhood: PropTypes.func,
+  setOrgId: PropTypes.func,
+}
 
 export default NeighborhoodSelector;
