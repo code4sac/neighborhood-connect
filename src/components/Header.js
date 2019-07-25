@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 export default class Header extends React.Component {
 
@@ -7,7 +8,8 @@ export default class Header extends React.Component {
     let buttonOption = this.props.option ? (
       <Link className="btn btn--secondary-blue btn--aligned" to={this.props.option}>
         <span className="btn__text">
-          <img src={this.props.optionIcon} alt={this.props.optionName} /> {this.props.optionName}
+          {this.props.optionIcon && <img src={this.props.optionIcon} alt={this.props.optionName} />}
+          {this.props.optionName}
         </span>
       </Link>
     ) : (
@@ -21,4 +23,10 @@ export default class Header extends React.Component {
       </header>
     )
   }
+}
+
+Header.propTypes = {
+  title: PropTypes.string,
+  option: PropTypes.string,
+  optionName: PropTypes.string,
 }
