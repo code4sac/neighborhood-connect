@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import PriorityCard from "./PriorityCard";
 import LocationHolder from "./LocationHolder";
@@ -13,7 +15,7 @@ const PrioritiesPage = ({ orgId, neighborhood }) => {
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await axios.get(
-        `${apiUrl}/orgs/${orgId}`
+        `${apiUrl}/orgs` //need to filter for orgs in locations
       );
       setPriorities(res.data);
     };
@@ -21,6 +23,7 @@ const PrioritiesPage = ({ orgId, neighborhood }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  if (neighborhood === '') return <Redirect to='/selectNeighborhood' />
   return (
     <div>
       <Header title={"Priorities"} optionIcon={edit} option={"/editPriorities"} optionName={"Edit Priorities"} />
@@ -30,7 +33,7 @@ const PrioritiesPage = ({ orgId, neighborhood }) => {
           {priorities.map(priority => (
             <li key={priority.id}>
               <PriorityCard
-                type={"Priority type will go here"}
+                type={priority.type}
                 description={priority.description}
                 rank={priority.rank}
               />
@@ -40,6 +43,11 @@ const PrioritiesPage = ({ orgId, neighborhood }) => {
       </div>
     </div>
   );
+};
+
+PrioritiesPage.propTypes = {
+  orgId: PropTypes.number,
+  neighborhood: PropTypes.string,
 };
 
 export default PrioritiesPage;
