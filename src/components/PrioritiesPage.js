@@ -15,7 +15,7 @@ const PrioritiesPage = ({ orgId, neighborhood }) => {
       const res = await axios.get(
         `${apiUrl}/orgs/${orgId}`
       );
-      setPriorities(res.data.rows);
+      setPriorities(res.data);
     };
     fetchPosts();
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -17,7 +17,7 @@ const NeighborhoodSelector = ({ neighborhood, setNeighborhood }) => {
       const res = await axios.get(
         `${apiUrl}/orgs`
       )
-      setOrganizations(res.data.rows)
+      setOrganizations(res.data)
 
     }
     fetchOrgs();

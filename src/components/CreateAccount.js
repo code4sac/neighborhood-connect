@@ -26,7 +26,7 @@ export default class CreateAccount extends Component {
     axios.get(`${apiUrl}/orgs`)
       .then((response) => {
         let newState = { ...this.state };
-        newState.neighborhoods = response.data.rows;
+        newState.neighborhoods = response.data;
         this.setState(newState);
         console.log(this.state.neighborhoods);
       })
