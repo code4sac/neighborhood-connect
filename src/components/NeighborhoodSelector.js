@@ -21,6 +21,7 @@ const NeighborhoodSelector = ({ neighborhood, setNeighborhood }) => {
 
     }
     fetchOrgs();
+    setSearchString('')
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -54,7 +55,6 @@ const NeighborhoodSelector = ({ neighborhood, setNeighborhood }) => {
                   className="searchform__search u-margin-top-smallest u-outline-blue"
                   type="search"
                   id="neighborhood"
-                  // value={searchString} what does this do?
                   onChange={handleChange}
                   placeholder="Search Locations"
                 />  
