@@ -1,17 +1,17 @@
 import React from 'react'
-import locationPlaceholder from '../assets/locationPlaceholder.svg';
+// import locationPlaceholder from '../assets/locationPlaceholder.svg';
 
 const FilteredOrgList = (props) => {
 
-  const filterList = (items) => {
-    return items.filter(function(item){
-      return item.name.toLowerCase().search(
-        props.searchString.toLowerCase()) !== -1;
-    });
-  }
-    const placeholder = <img src={locationPlaceholder} alt="placeholder" style={{ marginTop: "15vh" }}/>;
+    const filterList = (items) => {
+        return items.filter(function (item) {
+            return item.name.toLowerCase().search(
+                props.searchString.toLowerCase()) !== -1;
+        });
+    }
+    // const placeholder = <img src={locationPlaceholder} alt="placeholder" style={{ marginTop: "15vh" }} />;
 
-    let orgListData = filterList(props.items).map(function(item, index) {
+    let orgListData = filterList(props.items).map(function (item, index) {
         return (
             <div
                 index={index}
