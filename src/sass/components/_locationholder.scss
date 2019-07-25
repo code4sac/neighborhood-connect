@@ -3,14 +3,15 @@
     height: 5.5rem;
     color: $color-white-1;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
     
     &__change {
         color: $color-white-1;
         text-align: center;
         display: inline-block;
-        // padding: 1.5rem 2rem 1.5rem 3rem;
+        //padding: 1.5rem 2rem 1.5rem 1rem;
+        margin: 0 2rem;
         font-weight: 700;
         font-size: 1.5rem;
         letter-spacing: .1rem;
@@ -24,6 +25,7 @@
 
     &__current {
         // background-color: $color-primary-blue;
-        // padding: 1.5rem 2rem 1.5rem 3rem;
+        padding: 1.5rem 2rem 1.5rem 3rem;
+        margin: 0 1rem;
     }
 }
