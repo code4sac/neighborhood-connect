@@ -36,12 +36,13 @@ const NeighborhoodSelector = ({ neighborhood, setNeighborhood }) => {
 
   return (
     <div>
-      <Header>
-        <img alt="title" src={'an image'} />
+      <Header title={"Search"}>
+        {/* What does line 41-45 do? */}
+        {/* <img alt="title" src={'an image'} />
         <h2>Event Title</h2>
         <p>Event Author</p>
         <p>07/20/2019</p>
-        <button onClick={() => { this.share() }}> Share </button>
+        <button onClick={() => { this.share() }}> Share </button> */}
       </Header>
       <div>
         {redirect ? (

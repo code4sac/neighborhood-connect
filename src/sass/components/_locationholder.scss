@@ -1,14 +1,16 @@
 .locationHolder {
     background-color: $color-secondary-blue;
     height: 5.5rem;
-    position: relative;
     color: $color-white-1;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     
     &__change {
         color: $color-white-1;
         text-align: center;
         display: inline-block;
-        padding: 1.5rem 2rem 1.5rem 3rem;
+        // padding: 1.5rem 2rem 1.5rem 3rem;
         font-weight: 700;
         font-size: 1.5rem;
         letter-spacing: .1rem;
@@ -21,5 +23,7 @@
     }
 
     &__current {
+        // background-color: $color-primary-blue;
+        // padding: 1.5rem 2rem 1.5rem 3rem;
     }
 }
