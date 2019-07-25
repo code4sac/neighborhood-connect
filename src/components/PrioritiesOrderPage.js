@@ -1,51 +1,28 @@
 import React from "react";
+import PropTypes from 'prop-types';
+import axios from 'axios';
+import { Redirect } from 'react-router-dom';
+
 import PriorityCard from "./PriorityCard";
 import Header from './Header';
 import LocationHolder from "./LocationHolder";
+import { apiUrl } from '../config';
 
 export default class PrioritiesOrderPage extends React.Component {
-  // DUMMY DATA //
 
   state = {
-    priorities: [
-      {
-        type: "Homelessness",
-        priorityId: '00001', //this should be a UID sent form the db
-        rank: 1,
-        description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor. "
-      },
-      {
-        type: "Crime",
-        priorityId: '00002',
-        rank: 2,
-        description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-      },
-      {
-        type: "Graffiti",
-        priorityId: '00003',
-        rank: 3,
-        description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
-      },
-      {
-        type: "Speeding",
-        priorityId: '00004',
-        rank: 4,
-        description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
-      },
-      {
-        type: "Trash",
-        priorityId: '00005',
-        rank: 5,
-        description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
-      }
-    ]
+    priorities: []
   }
 
+  componentDidMount() {
+    const fetchPriorities = async () => {
+      const res = await axios.get(
+        `${apiUrl}/priorities/orgs/${this.props.orgId}`
+      )
+      this.setState({ priorities: res.data })
+    }
+    fetchPriorities();
+  }
   // Takes index of priority to swap ranks, creating a new sorted array based on the rank, and seet state to new array
   promoteRank = (priorityIndex) => {
     const updatedState = { ...this.state };
@@ -69,19 +46,21 @@ export default class PrioritiesOrderPage extends React.Component {
 
   render() {
     let sortedData = [...this.state.priorities].sort((a, b) => (a.rank > b.rank ? 1 : -1));
+    if (this.props.orgId === null) return <Redirect to='/selectNeighborhood' />
     return (
       <div>
         <Header title={"Priorities"} option={"/"} optionName={"View Priorities"} />
-        <LocationHolder hood={"neighborhood"} />
-        <div>
+        <LocationHolder hood={this.props.neighborhood} />
+        <div className='prioritiesPage'>
           <h2 style={{ color: '#6A81AC' }}>Rearrange Priorities</h2>
-          <ul>
+          <p style={{ color: '#6A81AC' }}>Rearrange the priorities for your neighborhood by using the promte/demote buttons.</p>
+          <ul style={{ marginTop: '1.5rem' }}>
             {sortedData.map((priority, index) => {
               return (
                 <li key={priority.priorityId}>
                   <PriorityCard
                     rank={priority.rank}
-                    type={priority.type}
+                    type={priority.prioritytype}
                     description={priority.description}
                     promote={() => { this.promoteRank(index) }}
                     demote={() => { this.demoteRank(index) }}
@@ -96,3 +75,8 @@ export default class PrioritiesOrderPage extends React.Component {
     )
   }
 };
+
+PrioritiesOrderPage.propTypes = {
+  neighborhood: PropTypes.string,
+  orgId: PropTypes.number,
+}
