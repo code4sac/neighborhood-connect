@@ -12,7 +12,7 @@ export default class PostPage extends Component {
         return (
             <div>
                 <Header>
-                    <img src={"an image"} />
+                    <img src={"an image"} alt={'alt placeholder'} />
                     <h2>Event Title</h2>
                     <p>Event Author</p>
                     <p>07/20/2019</p>
@@ -25,7 +25,7 @@ export default class PostPage extends Component {
                         Share{" "}
                     </button>
                 </Header>
-                <p style={{fontSize: "50px", color:"red"}}>Some details of the page event.</p>
+                <p style={{ fontSize: "50px", color: "red" }}>Some details of the page event.</p>
             </div>
         );
     }
