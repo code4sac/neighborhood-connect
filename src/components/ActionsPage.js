@@ -21,7 +21,7 @@ export default class ActionsPage extends Component {
     componentDidMount() {
         const priorityId = this.props.match.params.priorityId; //matching id from router params
         const fetchActions = async () => {
-            const res = await axios.get(`${apiUrl}/events/${priorityId}`);
+            const res = await axios.get(`${apiUrl}/events/priorities/${priorityId}`);
             this.setState({
                 actions: res.data
             });
@@ -35,6 +35,7 @@ export default class ActionsPage extends Component {
         let actionsList = this.state.actions.map(action => (
             <Action
                 id={action.id}
+                key={action.id}
                 avatar={avatar} //need from DB
                 location={action.location} //need from DB
                 title={action.title}
@@ -42,10 +43,9 @@ export default class ActionsPage extends Component {
                 description={action.description}
             />
         ));
-
         return (
             <div>
-                <Header title={"Actions"} option={"/newAction"} optionName={"New Action"} optionIcon={action} />
+                <Header title={"Actions"} option={`/newAction/${this.props.match.params.priorityId}`} optionName={"New Action"} optionIcon={action} />
                 <div className="details">
                     <h2 className="heading-secondary u-margin-bottom-small">Future Events</h2>
                     {actionsList}
