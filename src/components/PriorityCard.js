@@ -12,20 +12,20 @@ class PriorityCard extends React.Component {
     reRoute: '/',
   }
 
-  navToPriority = () => {
+  navToPriority = (priorityId) => {
     if (window.event.target.id !== 'promote' && window.event.target.id !== 'demote') {
       this.setState({
         redirect: true,
-        reRoute: ''
+        reRoute: priorityId,
       });
     }
   }
 
   render() {
-    const { rank, type, description, promote, demote, location } = this.props; //needs priorityId
-    if (this.state.redirect) return <Redirect to={`/${this.state.reRoute}`} />;
+    const { id, rank, type, description, promote, demote, location } = this.props; //needs priorityId
+    if (this.state.redirect) return <Redirect to={`/actions/${this.state.reRoute}`} />;
     return (
-      <div className="priorityCard" onClick={() => { this.navToPriority(type) }} style={{ display: 'block' }}>
+      <div className="priorityCard" onClick={() => { this.navToPriority(id) }} style={{ display: 'block' }}>
         <div className="priorityCard__banner">
           <p>#{rank} Priority</p>
           <p>{type}</p>

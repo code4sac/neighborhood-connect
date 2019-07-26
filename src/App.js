@@ -4,25 +4,29 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import PriorityDetails from "./components/PriorityDetails";
 import PrioritiesPage from "./components/PrioritiesPage";
 import NeighborhoodSelector from "./components/NeighborhoodSelector";
-import NewEventForm from "./components/NewEventForm";
 import NewPriorityForm from "./components/NewPriorityForm";
 import PrioritiesOrderPage from './components/PrioritiesOrderPage';
 import Login from './components/Login';
 import CreateAccount from "./components/CreateAccount";
 import ActionsPage from "./components/ActionsPage";
+import NewActionForm from './components/NewActionForm';
 
 
 function App() {
-  // TO-DO: Change this to retrieve neighborhood value from cookie/localstate
   const [neighborhood, setNeighborhood] = useState("");
-  // TO-DO: Add state hook to store the neighborhoodId in addition to hood name
+  const [orgId, setOrgId] = useState(null);
 
   return (
     <Router>
       <Route
         exact
         path="/"
-        render={props => <PrioritiesPage orgId={1} neighborhood={neighborhood} {...props} />}
+        render={props => <PrioritiesPage
+          orgId={orgId}
+          setOrgId={setOrgId}
+          neighborhood={neighborhood}
+          {...props}
+        />}
       />
       <Route
         exact
@@ -36,6 +40,7 @@ function App() {
           <NeighborhoodSelector
             neighborhood={neighborhood}
             setNeighborhood={setNeighborhood}
+            setOrgId={setOrgId}
             {...props}
           />
         )}
@@ -43,13 +48,21 @@ function App() {
       <Route
         exact
         path="/editPriorities"
-        render={props => <PrioritiesOrderPage neighborhood={neighborhood} {...props} />}
+        render={props => <PrioritiesOrderPage
+          neighborhood={neighborhood}
+          orgId={orgId}
+          {...props} />}
       />
-      <Route exact path="/addNewEvent" component={NewEventForm} />
+      <Route
+        path="/actions/:priorityId" // change later to some regex to match 'priority-asd' or something similar
+        render={props => <ActionsPage
+          {...props} />
+        }
+      />
       <Route exact path="/addNewPriority" component={NewPriorityForm} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/createAccount" component={CreateAccount} />
-      <Route exact path="/actions" component={ActionsPage} />
+      <Route exact path="/newAction" component={NewActionForm} />
     </Router>
   );
 }

@@ -1,42 +1,45 @@
 import React from 'react'
-import locationPlaceholder from '../assets/locationPlaceholder.svg';
+import PropTypes from 'prop-types';
 
 const FilteredOrgList = (props) => {
 
-  const filterList = (items) => {
-    return items.filter(function(item){
-      return item.name.toLowerCase().search(
+  const filterList = (orgs) => {
+    return orgs.filter(function (org) {
+      return org.name.toLowerCase().search(
         props.searchString.toLowerCase()) !== -1;
     });
   }
-    const placeholder = <img src={locationPlaceholder} alt="placeholder" style={{ marginTop: "15vh" }}/>;
 
-    let orgListData = filterList(props.items).map(function(item, index) {
-        return (
-            <div
-                index={index}
-                key={item.id}
-                className="orgList__card"
-                style={{ animationDelay: `${index / 15}s` }}
-                onClick={() => {
-                    props.onSelect(item);
-                }}
-            >
-                {item.name}
-                <span className="orgList__add">+</span>
-            </div>
-        );
-    });
-
-    // console.log(props)
-    // let orgList = props.searchString ? orgListData : placeholder;
-    let orgList = orgListData;
-
+  let orgListData = filterList(props.orgs).map(function (org, index) {
     return (
-        <div className="orgList">
-            {orgList}
-        </div>
+      <div
+        index={index}
+        key={org.id}
+        className="orgList__card"
+        style={{ animationDelay: `${index / 15}s` }}
+        onClick={() => {
+          props.onSelect(org);
+        }}
+      >
+        {org.name}
+        <span className="orgList__add">+</span>
+      </div>
     );
+  });
+
+  let orgList = orgListData;
+
+  return (
+    <div className="orgList">
+      {orgList}
+    </div>
+  );
+}
+
+FilteredOrgList.propTypes = {
+  orgs: PropTypes.array,
+  searchString: PropTypes.string,
+  onSelect: PropTypes.func,
 }
 
 export default FilteredOrgList
