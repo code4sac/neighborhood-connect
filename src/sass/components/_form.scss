@@ -1,0 +1,37 @@
+.form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1.5rem 3rem;
+
+    &__label {
+
+    }
+
+    &__input {
+        border: .1rem solid $color-grey-1;
+        border-radius: .7rem;
+        min-height: 2.5rem;
+        &:active,
+        &:focus {
+            outline: none;
+            border: .2rem solid $color-secondary-blue;
+        }
+    }
+
+    &__textarea {
+        padding: 1rem;
+        border-radius: .7rem;
+        border-bottom-right-radius: 0;
+
+        &:active,
+        &:focus {
+            outline: none;
+            border: .1rem solid $color-secondary-blue;
+        }
+    }
+
+    &__btn {
+        align-self: center;
+    }
+}

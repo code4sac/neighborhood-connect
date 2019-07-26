@@ -1,0 +1,19 @@
+.homelink {
+    display: flex;
+    align-items: center;
+    padding: 2rem 1rem;
+    width: 12rem;
+
+    &__image {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 1rem;
+    }
+
+    &__name {
+        font-size: 1.8rem;
+        color: $color-white-1;
+        font-weight: 700;
+        letter-spacing: .15rem;
+    }
+}
