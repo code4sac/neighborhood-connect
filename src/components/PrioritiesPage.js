@@ -9,7 +9,7 @@ import Header from "./Header";
 import edit from "../assets/edit.svg";
 import { apiUrl } from '../config';
 
-const PrioritiesPage = ({ orgId, setOrgId, neighborhood }) => {
+const PrioritiesPage = ({ orgId, neighborhood }) => {
   const [priorities, setPriorities] = useState([]);
 
   useEffect(() => {
