@@ -62,7 +62,7 @@ function App() {
       <Route exact path="/addNewPriority" component={NewPriorityForm} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/createAccount" component={CreateAccount} />
-      <Route exact path="/newAction" component={NewActionForm} />
+      <Route exact path="/newAction/:priorityId" component={NewActionForm} />
     </Router>
   );
 }
