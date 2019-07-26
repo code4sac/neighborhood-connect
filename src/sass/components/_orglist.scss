@@ -16,6 +16,12 @@
         box-shadow: 0 .1rem .3rem rgba($color-black-1, .1);
         margin: 1rem auto;
         animation: fadeIn .5s ease-in backwards;
+        cursor: pointer;
+
+        &:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 .1rem .3rem rgba($color-black-1, .3);
+        }
     }
 
     &__add {
