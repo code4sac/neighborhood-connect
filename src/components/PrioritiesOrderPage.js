@@ -12,6 +12,8 @@ import LinkToPage from './LinkToPage';
 import greyplus from '../assets/add-grey-button.svg';
 import blackArrow from '../assets/chevron-right-black.svg';
 
+import HeaderBlock from './HeaderBlock';
+
 export default class PrioritiesOrderPage extends React.Component {
 
   state = {
@@ -77,11 +79,9 @@ export default class PrioritiesOrderPage extends React.Component {
             <LocationHolder hood={this.props.neighborhood} />
 
             <div className="prioritiesPage">
-                <h2 className="heading-secondary">Add New Priority</h2>
-                <p className="paragraph u-margin-bottom-smallest">Noticed something new in your community?</p>
+                <HeaderBlock name={"Add New Priority"} description={"Noticed something new in your community?"} />
                 <LinkToPage form={"/addNewPriority"} icon={greyplus} optionName={"Add Priority"} image={blackArrow} />
-                <h2 className="heading-secondary u-margin-top-med">Rearrange Priorities</h2>
-                <p className="paragraph u-margin-bottom-smallest">Rearrange priorities by clicking promote/demote.</p>
+                <HeaderBlock name={"Rearrange Priorities"} description={"Rearrange priorities by clicking promote/demote."} />
                 <ul>{sortedDataList}</ul>
             </div>
         </div>
