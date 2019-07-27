@@ -1,8 +1,9 @@
 .homelink {
     display: flex;
     align-items: center;
-    padding: 2rem 1rem;
+    padding: 1.5rem 0;
     width: 12rem;
+    line-height: 0;
 
     &__image {
         display: inline-block;
