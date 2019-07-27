@@ -1,6 +1,8 @@
 .u-margin-top-smallest { margin-top: 1rem !important; }
 .u-margin-top-small { margin-top: 1.5rem !important; }
+.u-margin-top-med { margin-top: 2rem !important; }
 
+.u-margin-bottom-smallest { margin-bottom: 1rem !important; }
 .u-margin-bottom-small { margin-bottom: 1.5rem !important; }
 
 .u-margin-left-small { margin-left: 1.5rem !important; }
@@ -10,3 +12,8 @@
 .u-margin-right-small { margin-right: 1.5rem !important; }
 
 .u-padding-center { padding: 1rem 2rem !important;}
+
+.u-flex-row {     
+    display: flex !important;
+    align-items: center !important;
+}

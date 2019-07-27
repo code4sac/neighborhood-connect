@@ -18,6 +18,8 @@ body {
 .heading-secondary {
     font-size: 1.7rem;
     color: $color-secondary-blue;
+    font-weight: 700;
+    line-height: 1;
 }
 
 .heading-tertiary {
@@ -31,4 +33,8 @@ body {
     font-size: 1.2rem;
     line-height: 1.5;
     width: 80%;
+}
+.paragraph {
+    font-size: 1.5rem;
+    color: $color-grey-dark-3;
 }

@@ -8,6 +8,10 @@ import Header from './Header';
 import LocationHolder from "./LocationHolder";
 import { apiUrl } from '../config';
 
+import LinkToPage from './LinkToPage';
+import greyplus from '../assets/add-grey-button.svg';
+import blackArrow from '../assets/chevron-right-black.svg';
+
 export default class PrioritiesOrderPage extends React.Component {
 
   state = {
@@ -68,16 +72,20 @@ export default class PrioritiesOrderPage extends React.Component {
 
     if (this.props.orgId === null) return <Redirect to='/selectNeighborhood' />
     return (
-      <div>
-        <Header title={"Edit Priorities"} />
-        <LocationHolder hood={this.props.neighborhood} />
-        <div className='prioritiesPage'>
-          <ul>
-            {sortedDataList}
-          </ul>
+        <div>
+            <Header title={"Edit Priorities"} />
+            <LocationHolder hood={this.props.neighborhood} />
+
+            <div className="prioritiesPage">
+                <h2 className="heading-secondary">Add New Priority</h2>
+                <p className="paragraph u-margin-bottom-smallest">Noticed something new in your community?</p>
+                <LinkToPage form={"/addNewPriority"} icon={greyplus} optionName={"Add Priority"} image={blackArrow} />
+                <h2 className="heading-secondary u-margin-top-med">Rearrange Priorities</h2>
+                <p className="paragraph u-margin-bottom-smallest">Rearrange priorities by clicking promote/demote.</p>
+                <ul>{sortedDataList}</ul>
+            </div>
         </div>
-      </div>
-    )
+    );
   }
 };
 
