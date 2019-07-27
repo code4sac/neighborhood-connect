@@ -29,6 +29,7 @@ const NeighborhoodSelector = ({ neighborhood, setNeighborhood, setOrgId }) => {
     setNeighborhood(org.name);
     setOrgId(org.id);
     localStorage.setItem('orgId', `${org.id}`)
+    localStorage.setItem('neighborhoodName', `${org.name}`)
     setRedirect(true);
   };
 
