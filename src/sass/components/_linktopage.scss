@@ -1,0 +1,32 @@
+.link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.7rem 2rem;
+    margin-bottom: 2rem;
+    border: .1rem solid $color-grey-2;
+    box-shadow: 0 .1rem .3rem rgba($color-black-1, .1);
+    border-radius: .7rem;
+    max-width: 50rem;
+    cursor: pointer;
+
+    &:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 .1rem .3rem rgba($color-black-1, .3);
+    }
+
+    &__icon {
+        width: 1.8rem;
+        margin-right: 1.5rem;
+    }
+
+    &__name {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: $color-grey-dark-1;
+    }
+
+    &__pointer {
+        width: 1.3rem;
+    }
+}

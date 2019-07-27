@@ -19,7 +19,7 @@ export default class Header extends React.Component {
         let homeLink =
             this.props.option !== "/editPriorities" ? (
                 <Link to="/">
-                    <div className="homelink">
+                    <div className="homelink u-margin-left-smallest">
                         <img className="homelink__image chevronArrow" src={whiteArrow} alt="arrow" />
                         <span className="homelink__name">Priorities</span>
                     </div>
