@@ -23,13 +23,6 @@ export default class PrioritiesOrderPage extends React.Component {
     };
     fetchPriorities();
   }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state !== prevState && prevState.prioritiesFetched === true) {
-      // prevents running after componentDidMount() API call
-      // PATCH request here
-    }
-  }
   // Takes index of priority to swap ranks, creating a new sorted array based on the rank, and seet state to new array
   promoteRank = priorityIndex => {
     const updatedState = { ...this.state };
@@ -58,18 +51,18 @@ export default class PrioritiesOrderPage extends React.Component {
   async updatePriorityRank(priorityId1, priorityId2, rankId1, rankId2) {
     // store urls to patch
     const urls = [
-      `localhost:3000/priorities/${priorityId1}/${rankId1}`,
-      `localhost:3000/priorities/${priorityId2}/${rankId2}`
+      `${apiUrl}/priorities/${priorityId1}/${rankId1}`,
+      `${apiUrl}/priorities/${priorityId2}/${rankId2}`
     ];
-
     // use map() to perform a fetch and handle the reponse for each url
     Promise.all(
-      urls.map(url => {
-        Axios.fetch(url)
-          .then(() => console.log("patch one"))
-          .catch(() => console.log("error patching priorities"));
-      })
-    );
+      urls.map((url, index) => (
+        axios.patch(url)
+          .then(() => console.log(`Patched ${index === 1 ? 'selected' : 'replaced'} priority`))
+          .catch(() => console.log(`Error patching ${index === 1 ? 'selected' : 'replaced'} priority`))
+      )
+      )
+    )
   }
 
   render() {
