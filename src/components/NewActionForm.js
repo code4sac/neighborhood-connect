@@ -34,7 +34,7 @@ export default class NewEventForm extends Component {
                             visibility: true, // required key by DB
                             user_id: 1 // required key by DB, needs to be replaced with user id's when available
                         };
-                        fetch(`${apiUrl}/events`, {
+                        fetch(`${apiUrl}/actions`, {
                             method: "POST",
                             mode: "cors",
                             headers: { "Content-Type": "application/json" },
@@ -46,7 +46,6 @@ export default class NewEventForm extends Component {
                         Action Title
                     </label>
                     <input className="form__input" type="text" name="title" value={this.state.title} onChange={this.saveToState} />
-
                     <label className="form__label" htmlFor="description">
                         Action Description
                     </label>
