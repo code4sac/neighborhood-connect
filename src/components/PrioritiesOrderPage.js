@@ -46,26 +46,27 @@ export default class PrioritiesOrderPage extends React.Component {
 
   render() {
     let sortedData = [...this.state.priorities].sort((a, b) => (a.rank > b.rank ? 1 : -1));
-    let sortedDataList =  sortedData.map((priority, index) => {
-         return (
-             <li key={priority.priorityId}>
-                 <PriorityCard
-                     rank={priority.rank}
-                     type={priority.prioritytype}
-                     description={priority.description}
-                     promote={() => {
-                         this.promoteRank(index);
-                     }}
-                     demote={() => {
-                         this.demoteRank(index);
-                     }}
-                     location={this.props.location.pathname}
-                 />
-             </li>
-         );
-     });
-     //temporarily turned this off to allow for easier development, not having to constantly select a neighborhood
-    // if (this.props.orgId === null) return <Redirect to='/selectNeighborhood' />
+    let sortedDataList = sortedData.map((priority, index) => {
+      return (
+        <li key={priority.id}>
+          <PriorityCard
+            id={priority.id}
+            rank={priority.rank}
+            type={priority.prioritytype}
+            description={priority.description}
+            promote={() => {
+              this.promoteRank(index);
+            }}
+            demote={() => {
+              this.demoteRank(index);
+            }}
+            location={this.props.location.pathname}
+          />
+        </li>
+      );
+    });
+
+    if (this.props.orgId === null) return <Redirect to='/selectNeighborhood' />
     return (
       <div>
         <Header title={"Edit Priorities"} />
