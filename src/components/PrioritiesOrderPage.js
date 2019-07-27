@@ -11,7 +11,8 @@ import { apiUrl } from '../config';
 export default class PrioritiesOrderPage extends React.Component {
 
   state = {
-    priorities: []
+    priorities: [],
+    prioritiesFetched: false,
   }
 
   componentDidMount() {
@@ -19,9 +20,15 @@ export default class PrioritiesOrderPage extends React.Component {
       const res = await axios.get(
         `${apiUrl}/priorities/orgs/${this.props.orgId}`
       )
-      this.setState({ priorities: res.data })
+      this.setState({ priorities: res.data, prioritiesFetched: true })
     }
     fetchPriorities();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state !== prevState && prevState.prioritiesFetched === true) { // prevents running after componentDidMount() API call
+      // PATCH request here
+    }
   }
   // Takes index of priority to swap ranks, creating a new sorted array based on the rank, and seet state to new array
   promoteRank = (priorityIndex) => {
