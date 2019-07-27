@@ -9,23 +9,23 @@ export default class NewPriorityForm extends Component {
     saveToState = e => {
       this.setState({ [e.target.name]: e.target.value });
     }
+
+    handleSubmit = e => {
+        e.preventDefault();
+        fetch('INSERT__URL', { 
+          method: 'POST',
+          body: JSON.stringify(this.state)}
+          )
+        .then(this.setState({name:'',details:''}))
+        .catch(err => console.log(err))    
+    }
     
     render() {
         return (
-            <>
-        <h2>Add a New Priority</h2>
-        <p>What's new in the community?</p>
         <div>
           <form 
             name='new-priority'
-            onSubmit={async e => {
-              e.preventDefault();
-              fetch('INSERT__URL', { 
-                method: 'POST',
-              body: JSON.stringify(this.state)}
-              )
-                .then(this.setState({name:'',details:''}))
-            }}>
+            onSubmit={this.handleSubmit}>
             <label htmlFor='name'>Priority Name</label>
             <input 
               type='text' 
@@ -42,7 +42,6 @@ export default class NewPriorityForm extends Component {
             <button type='submit'>Add Priority</button>
           </form>
         </div>
-      </>
         )
     }
 }
