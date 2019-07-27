@@ -65,8 +65,8 @@ export default class PrioritiesOrderPage extends React.Component {
         </li>
       );
     });
-    //temporarily turned this off to allow for easier development, not having to constantly select a neighborhood
-    // if (this.props.orgId === null) return <Redirect to='/selectNeighborhood' />
+
+    if (this.props.orgId === null) return <Redirect to='/selectNeighborhood' />
     return (
       <div>
         <Header title={"Edit Priorities"} />
