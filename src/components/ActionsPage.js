@@ -21,7 +21,7 @@ export default class ActionsPage extends Component {
     componentDidMount() {
         const priorityId = this.props.match.params.priorityId; //matching id from router params
         const fetchActions = async () => {
-            const res = await axios.get(`${apiUrl}/events/priorities/${priorityId}`);
+            const res = await axios.get(`${apiUrl}/actions/priorities/${priorityId}`);
             this.setState({
                 actions: res.data
             });
