@@ -32,12 +32,12 @@ export default class NewPriorityForm extends Component {
                     <label className="form__label" htmlFor="name">
                         Priority Name
                     </label>
-                    <input className="form__input" type="text" name="name" value={this.state.name} onChange={this.saveToState} placeholder="Textfield" />
+                    <input className="form__input" type="text" name="name" value={this.state.name} onChange={this.saveToState} placeholder="Textfield" required />
 
                     <label className="form__label" htmlFor="details">
                         Priority Details
                     </label>
-                    <textarea className="form__textarea" type="text" name="details" value={this.state.details} onChange={this.saveToState} placeholder="Textfield" />
+                    <textarea className="form__textarea" type="text" name="details" value={this.state.details} onChange={this.saveToState} placeholder="Textfield" required />
                     <button className="form__btn btn btn--primary-blue u-margin-top-small" type="submit">
                         Add Priority
                     </button>
