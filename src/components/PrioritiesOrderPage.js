@@ -1,58 +1,81 @@
 import React from "react";
-import PropTypes from 'prop-types';
-import axios from 'axios';
-import { Redirect } from 'react-router-dom';
+import PropTypes from "prop-types";
+import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 import PriorityCard from "./PriorityCard";
-import Header from './Header';
+import Header from "./Header";
 import LocationHolder from "./LocationHolder";
-import { apiUrl } from '../config';
+import { apiUrl } from "../config";
 
 export default class PrioritiesOrderPage extends React.Component {
-
   state = {
     priorities: [],
-    prioritiesFetched: false,
-  }
+    prioritiesFetched: false
+  };
 
   componentDidMount() {
     const fetchPriorities = async () => {
       const res = await axios.get(
         `${apiUrl}/priorities/orgs/${this.props.orgId}`
-      )
-      this.setState({ priorities: res.data, prioritiesFetched: true })
-    }
+      );
+      this.setState({ priorities: res.data, prioritiesFetched: true });
+    };
     fetchPriorities();
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state !== prevState && prevState.prioritiesFetched === true) { // prevents running after componentDidMount() API call
+    if (this.state !== prevState && prevState.prioritiesFetched === true) {
+      // prevents running after componentDidMount() API call
       // PATCH request here
     }
   }
   // Takes index of priority to swap ranks, creating a new sorted array based on the rank, and seet state to new array
-  promoteRank = (priorityIndex) => {
+  promoteRank = priorityIndex => {
     const updatedState = { ...this.state };
     if (priorityIndex >= 1) {
       updatedState.priorities[priorityIndex].rank = priorityIndex;
       updatedState.priorities[priorityIndex - 1].rank = priorityIndex + 1;
-      let sortedData = updatedState.priorities.sort((a, b) => (a.rank > b.rank ? 1 : -1));
+      let sortedData = updatedState.priorities.sort((a, b) =>
+        a.rank > b.rank ? 1 : -1
+      );
       this.setState({ sortedData });
     }
-  }
+  };
 
-  demoteRank = (priorityIndex) => {
+  demoteRank = priorityIndex => {
     const updatedState = { ...this.state };
     if (priorityIndex < updatedState.priorities.length - 1) {
       updatedState.priorities[priorityIndex].rank = priorityIndex + 2;
       updatedState.priorities[priorityIndex + 1].rank = priorityIndex + 1;
-      let sortedData = updatedState.priorities.sort((a, b) => (a.rank > b.rank ? 1 : -1));
+      let sortedData = updatedState.priorities.sort((a, b) =>
+        a.rank > b.rank ? 1 : -1
+      );
       this.setState({ sortedData });
     }
+  };
+
+  async updatePriorityRank(priorityId1, priorityId2, rankId1, rankId2) {
+    // store urls to patch
+    const urls = [
+      `localhost:3000/priorities/${priorityId1}/${rankId1}`,
+      `localhost:3000/priorities/${priorityId2}/${rankId2}`
+    ];
+
+    // use map() to perform a fetch and handle the reponse for each url
+    Promise.all(
+      urls.map(url => {
+        Axios.fetch(url)
+          .then(() => console.log("patch one"))
+          .catch(() => console.log("error patching priorities"));
+      })
+    );
   }
 
   render() {
-    let sortedData = [...this.state.priorities].sort((a, b) => (a.rank > b.rank ? 1 : -1));
+    let sortedData = [...this.state.priorities].sort((a, b) =>
+      a.rank > b.rank ? 1 : -1
+    );
     let sortedDataList = sortedData.map((priority, index) => {
       return (
         <li key={priority.id}>
@@ -73,22 +96,20 @@ export default class PrioritiesOrderPage extends React.Component {
       );
     });
 
-    if (this.props.orgId === null) return <Redirect to='/selectNeighborhood' />
+    if (this.props.orgId === null) return <Redirect to="/selectNeighborhood" />;
     return (
       <div>
         <Header title={"Edit Priorities"} />
         <LocationHolder hood={this.props.neighborhood} />
-        <div className='prioritiesPage'>
-          <ul>
-            {sortedDataList}
-          </ul>
+        <div className="prioritiesPage">
+          <ul>{sortedDataList}</ul>
         </div>
       </div>
-    )
+    );
   }
-};
+}
 
 PrioritiesOrderPage.propTypes = {
   neighborhood: PropTypes.string,
-  orgId: PropTypes.number,
-}
+  orgId: PropTypes.number
+};
