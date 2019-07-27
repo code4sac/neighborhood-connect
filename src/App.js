@@ -13,8 +13,15 @@ import NewActionForm from './components/NewActionForm';
 
 
 function App() {
-  const [neighborhood, setNeighborhood] = useState("");
-  const [orgId, setOrgId] = useState(null);
+  const [neighborhood, setNeighborhood] = useState(() => {
+    const initialName = localStorage.getItem('neighborhoodName')
+    return initialName;
+  })
+
+  const [orgId, setOrgId] = useState(() => {
+    const initialId = localStorage.getItem('orgId');
+    return initialId;
+  });
 
   return (
     <Router>
