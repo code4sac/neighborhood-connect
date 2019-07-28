@@ -66,7 +66,14 @@ function App() {
           {...props} />
         }
       />
-      <Route exact path="/addNewPriority" component={NewPriorityForm} />
+      <Route
+        exact
+        path="/addPriority"
+        render={props => <NewPriorityForm
+          orgId={orgId}
+          {...props} />
+        }
+      />
       <Route exact path="/login" component={Login} />
       <Route exact path="/createAccount" component={CreateAccount} />
       <Route exact path="/newAction/:priorityId" component={NewActionForm} />
