@@ -34,63 +34,38 @@ export default class NewPriorityForm extends Component {
       this.setState({ [e.target.name]: e.target.value });
     }
   }
+    handleSubmit = e => {
+        e.preventDefault();
+        fetch('INSERT__URL', { 
+          method: 'POST',
+          body: JSON.stringify(this.state)}
+          )
+        .then(this.setState({name:'',details:''}))
+        .catch(err => console.log(err))    
+    }
+    
+    render() {
+        return (
+            <div>
+                <Header title={"Add New Priority"} />
+                <div className="formpages">
+                  <HeaderBlock name={"Add New Priority"} description={"Noticed something new in your community?"} />
+                <form className="form" name="new-priority" onSubmit={this.handleSubmit}>
+                    <label className="form__label" htmlFor="name">
+                        Priority Name
+                    </label>
+                    <input className="form__input" type="text" name="name" value={this.state.name} onChange={this.saveToState} placeholder="Textfield" required />
 
-  createNewPriority = async e => {
-    e.preventDefault();
-    fetch(`${apiUrl}/priorities`, {
-      method: "POST",
-      mode: 'cors',
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        priority_type_id: this.state.priority_type_id,
-        description: this.state.description,
-        visibility: true,  // hard coded for db
-        priority_status_type_id: 1,  // what exactly is this?
-        organization_id: this.state.organization_id,
-        rank: this.state.rank,
-        user_id: 9,  // hard coded for db
-        // prioritytype: this.state.types[this.state.priority_type_id - 1].name,
-      })
-    })
-      .then(res => console.log(res))
-      .catch(err => console.error(err))
-
-  }
-
-  render() {
-    return (
-      <>
-        <h2>Add a New Priority</h2>
-        <p>What's new in the community?</p>
-        <div>
-          <form
-            name='new-priority'
-            onSubmit={this.createNewPriority}>
-            <label htmlFor='prioritytype' style={{ color: 'black' }}>Priority Type</label>
-            <input
-              type='text'
-              name='prioritytype'
-              value={this.state.prioritytype}
-              onChange={this.saveToState} />
-
-            <label htmlFor='description' style={{ color: 'black' }}>Priority Description</label>
-            <textarea type='text'
-              name='description'
-              value={this.state.description}
-              onChange={this.saveToState}
-            />
-
-            <label htmlFor='priority_type_id' style={{ color: 'black' }}>Priority Type</label>
-            <select name='priority_type_id' onChange={this.saveToState}>
-              {this.state.types.map(type => (
-                <option value={type.id}>{type.name}</option>
-              ))}
-            </select>
-
-            <button type='submit'>Add Priority</button>
-          </form>
-        </div>
-      </>
-    )
-  }
+                    <label className="form__label" htmlFor="details">
+                        Priority Details
+                    </label>
+                    <textarea className="form__textarea" type="text" name="details" value={this.state.details} onChange={this.saveToState} placeholder="Textfield" required />
+                    <button className="form__btn btn btn--primary-blue u-margin-top-small" type="submit">
+                        Add Priority
+                    </button>
+                </form>
+                </div>
+            </div>
+        );
+    }
 }
