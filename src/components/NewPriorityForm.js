@@ -13,6 +13,7 @@ export default class NewPriorityForm extends Component {
     organization_id: null,
     rank: null,
     user_id: 9,  // hard coded for db post
+    prioritytype: '',
     types: [] // stores priority types for dropdown
   }
 
@@ -49,48 +50,37 @@ export default class NewPriorityForm extends Component {
         organization_id: this.state.organization_id,
         rank: this.state.rank,
         user_id: 9,  // hard coded for db
-        // prioritytype: this.state.types[this.state.priority_type_id - 1].name,
       })
     })
       .then(res => console.log(res))
       .catch(err => console.error(err))
-
   }
 
   render() {
     return (
-      <>
-        <h2>Add a New Priority</h2>
-        <p>What's new in the community?</p>
-        <div>
-          <form
-            name='new-priority'
-            onSubmit={this.createNewPriority}>
-            <label htmlFor='prioritytype' style={{ color: 'black' }}>Priority Type</label>
-            <input
-              type='text'
-              name='prioritytype'
-              value={this.state.prioritytype}
-              onChange={this.saveToState} />
+      <div>
+        <Header title={"Add New Priority"} />
+        <div className="formpages">
+          <HeaderBlock name={"Add New Priority"} description={"Noticed something new in your community?"} />
+          <form className="form" name="new-priority" onSubmit={this.createNewPriority}>
 
-            <label htmlFor='description' style={{ color: 'black' }}>Priority Description</label>
-            <textarea type='text'
-              name='description'
-              value={this.state.description}
-              onChange={this.saveToState}
-            />
+            <label className="form__label" htmlFor="prioritytype">Priority Type</label>
+            <input className="form__input" type="text" name="prioritytype" value={this.state.prioritytype} onChange={this.saveToState} placeholder="Textfield" required />
 
-            <label htmlFor='priority_type_id' style={{ color: 'black' }}>Priority Type</label>
+            <label className="form__label" htmlFor="description">Priority Description</label>
+            <textarea className="form__textarea" type="text" name="description" value={this.state.description} onChange={this.saveToState} placeholder="Textfield" required />
+
+            <label className="form__label" htmlFor="priority_type_id">Priority Type</label>
             <select name='priority_type_id' onChange={this.saveToState}>
               {this.state.types.map(type => (
-                <option value={type.id}>{type.name}</option>
+                <option value={type.id} key={type.id}>{type.name}</option>
               ))}
             </select>
 
-            <button type='submit'>Add Priority</button>
+            <button className="form__btn btn btn--primary-blue u-margin-top-small" type="submit">Add Priority</button>
           </form>
         </div>
-      </>
-    )
+      </div>
+    );
   }
 }
