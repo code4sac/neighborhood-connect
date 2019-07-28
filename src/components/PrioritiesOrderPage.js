@@ -39,7 +39,54 @@ export default class PrioritiesOrderPage extends React.Component {
       this.setState({ sortedData });
     }
   };
+  // promote ex: 3 => 2.
+  async johnsPromoteRank(priorityIdx) {
+    const state = { ...this.state };
+    // new ranks for the two priorities that are affected by promotion.
+    const promotedRank = priorityIdx - 2; // 2
+    const demotedRank = priorityIdx - 1; // 3
 
+    // priorities id's for the two priorities affected by promotion
+    const promotedId = state.priorities[priorityIdx].id;
+    const demotedId = state.priorities[priorityIdx - 1].id;
+
+    try {
+      await this.updatePriorityRank(
+        promotedId,
+        demotedId,
+        promotedRank,
+        demotedRank
+      );
+      await this.fetchPriorities();
+    } catch (err) {
+      // some sort of error handeling
+      console.log(err);
+    }
+  }
+
+  // promote ex: 2 => 3 (base 10
+  async johnsDemoteRank(priorityIdx) {
+    const state = { ...this.state };
+    // range(1-5)new ranks for the two priorities that are affected by promotion.
+    const demotedRank = priorityIdx + 2; // 3
+    const promotedRank = priorityIdx + 1; // 2
+
+    // priorities id's for the two priorities affected by promotion
+    const promotedId = state.priorities[priorityIdx + 1].id;
+    const demotedId = state.priorities[priorityIdx].id;
+    try {
+      await this.updatePriorityRank(
+        promotedId,
+        demotedId,
+        promotedRank,
+        demotedRank
+      );
+      // await this.fetchPriorities();
+    } catch (err) {
+      // some sort of error handeling
+      console.log(err);
+    }
+  }
   demoteRank = priorityIndex => {
     const updatedState = { ...this.state };
     if (priorityIndex < updatedState.priorities.length - 1) {
@@ -52,30 +99,14 @@ export default class PrioritiesOrderPage extends React.Component {
     }
   };
 
-  async updatePriorityRank(priorityIds) {
-    // //priorityIds are an object with the two updated priorities
-    // axios.post(`${apiUrl}/priorities/${priorityId1}/${rankId1}`);
-    // const urls = [
-    //   `${apiUrl}/priorities/${priorityId1}/${rankId1}`,
-    //   `${apiUrl}/priorities/${priorityId2}/${rankId2}`
-    // ];
-    // // use map() to perform a fetch and handle the reponse for each url
-    // Promise.all(
-    //   urls.map((url, index) =>
-    //     axios
-    //       .patch(url)
-    //       .then(() =>
-    //         console.log(
-    //           `Patched ${index === 1 ? "selected" : "replaced"} priority`
-    //         )
-    //       )
-    //       .catch(() =>
-    //         console.log(
-    //           `Error patching ${index === 1 ? "selected" : "replaced"} priority`
-    //         )
-    //       )
-    //   )
-    // );
+  async updatePriorityRank(promotedId, demotedId, promotedRank, demotedRank) {
+    const body = {
+      promotedId: promotedId,
+      demotedId: demotedId,
+      promotedRank: promotedRank,
+      demotedRank: demotedRank
+    };
+    await axios.post(`${apiUrl}/priorities/updateRank`, body);
   }
 
   render() {
@@ -91,10 +122,10 @@ export default class PrioritiesOrderPage extends React.Component {
             type={priority.prioritytype}
             description={priority.description}
             promote={() => {
-              this.promoteRank(index);
+              this.johnsPromoteRank(index);
             }}
             demote={() => {
-              this.demoteRank(index);
+              this.johnsDemoteRank(index);
             }}
             location={this.props.location.pathname}
           />
