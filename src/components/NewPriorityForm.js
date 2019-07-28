@@ -5,34 +5,52 @@ import { apiUrl } from '../config';
 
 export default class NewPriorityForm extends Component {
   state = {
-    priority_type_id: 1, // hard coded for db
+    priority_type_id: 1, // needs to be 1 to keep value for post request if dropdown is unchanged
     description: "",
-    visibility: true,  // hard coded for db
-    priority_status_type_id: 4,  // hard coded for db
+    visibility: true,  // hard coded for db post
+    priority_status_type_id: 1,  // what exactly is this?
     organization_id: null,
     rank: null,
-    user_id: 2,  // hard coded for db
+    user_id: 9,  // hard coded for db post
     prioritytype: "",
+    types: [] // stores priority types for dropdown
   }
 
   componentDidMount = () => {
     this.setState({ organization_id: parseInt(this.props.orgId) })
     axios.get(`${apiUrl}/priorities/orgs/${this.props.orgId}`)
       .then(res => this.setState({ rank: res.data.length + 1 }));
+    axios.get(`${apiUrl}/types`)
+      .then(res => {
+        const updatedTypes = [...res.data.rows]
+        this.setState({ types: updatedTypes })
+      })
   }
 
   saveToState = e => {
-    this.setState({ [e.target.name]: e.target.value });
+    if (e.target.name === "priority_type_id") {
+      this.setState({ priority_type_id: parseInt(e.target.value) });
+    } else {
+      this.setState({ [e.target.name]: e.target.value });
+    }
   }
 
   createNewPriority = async e => {
     e.preventDefault();
-    console.log(this.state)
     fetch(`${apiUrl}/priorities`, {
       method: "POST",
       mode: 'cors',
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(this.state)
+      body: JSON.stringify({
+        priority_type_id: this.state.priority_type_id,
+        description: this.state.description,
+        visibility: true,  // hard coded for db
+        priority_status_type_id: 1,  // what exactly is this?
+        organization_id: this.state.organization_id,
+        rank: this.state.rank,
+        user_id: 9,  // hard coded for db
+        prioritytype: this.state.types[this.state.priority_type_id - 1].name,
+      })
     })
       .then(res => console.log(res))
       .catch(err => console.error(err))
@@ -62,6 +80,13 @@ export default class NewPriorityForm extends Component {
               onChange={this.saveToState}
             />
             <button type='submit'>Add Priority</button>
+
+            <label htmlFor='priority_type_id' style={{ color: 'black' }}>Priority Type</label>
+            <select name='priority_type_id' onChange={this.saveToState}>
+              {this.state.types.map(type => (
+                <option value={type.id}>{type.name}</option>
+              ))}
+            </select>
           </form>
         </div>
       </>
