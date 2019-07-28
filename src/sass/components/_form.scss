@@ -2,16 +2,20 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    padding: 1.5rem 3rem;
 
     &__label {
-
+        color: $color-grey-dark-3;
     }
 
     &__input {
-        border: .1rem solid $color-grey-1;
+        border: .1rem solid $color-grey-3;
         border-radius: .7rem;
-        min-height: 2.5rem;
+        min-height: 4.5rem;
+        font-family: $default-font;
+        font-size: 1.8rem;
+        color: $color-grey-dark-2;
+        padding: 1rem 1.5rem;
+
         &:active,
         &:focus {
             outline: none;
@@ -23,6 +27,11 @@
         padding: 1rem;
         border-radius: .7rem;
         border-bottom-right-radius: 0;
+        font-family: $default-font;
+        font-size: 1.8rem;
+        color: $color-grey-dark-2;
+        padding: 1rem 1.5rem;
+        min-height: 20rem;
 
         &:active,
         &:focus {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Header from './Header';
+import HeaderBlock from './HeaderBlock';
 import { apiUrl } from '../config';
 
 export default class NewEventForm extends Component {
@@ -15,9 +16,10 @@ export default class NewEventForm extends Component {
 
   render() {
     return (
-      <div className="actionspage">
+      <div>
         <Header title={"Add New Action"} />
-        <div>
+        <div className="formpages">
+          <HeaderBlock name={"Add New Action"} description={"Want to add a new action in your community?"} />
           <form
             className="form"
             name="new-event"
@@ -30,32 +32,30 @@ export default class NewEventForm extends Component {
                 priority_id: this.props.match.params.priorityId,
                 action_type_id: 1, // required key by DB, needs default or different action types
                 visibility: true, // required key by DB
-                user_id: 1, // required key by DB, needs to be replaced with user id's when available
-              }
+                user_id: 1 // required key by DB, needs to be replaced with user id's when available
+              };
               fetch(`${apiUrl}/actions`, {
                 method: "POST",
-                mode: 'cors',
+                mode: "cors",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData)
-              })
-                .then(this.setState({ title: '', description: '' }));
+              }).then(this.setState({ title: "", description: "" }));
             }}
           >
             <label className="form__label" htmlFor="title">
               Action Title
-            </label>
+                    </label>
             <input className="form__input" type="text" name="title" value={this.state.title} onChange={this.saveToState} />
-
             <label className="form__label" htmlFor="description">
               Action Description
-            </label>
+                    </label>
             <textarea className="form__textarea" type="text" name="description" value={this.state.description} onChange={this.saveToState} />
-            <button className="form__btn btn btn--secondary-blue u-margin-top-small" type="submit">
+            <button className="form__btn btn btn--primary-blue u-margin-top-small" type="submit">
               Create Action
-            </button>
+                    </button>
           </form>
         </div>
-      </div >
+      </div>
     );
   }
 }
