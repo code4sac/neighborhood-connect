@@ -12,7 +12,6 @@ export default class NewPriorityForm extends Component {
     organization_id: null,
     rank: null,
     user_id: 9,  // hard coded for db post
-    prioritytype: "",
     types: [] // stores priority types for dropdown
   }
 
@@ -49,7 +48,7 @@ export default class NewPriorityForm extends Component {
         organization_id: this.state.organization_id,
         rank: this.state.rank,
         user_id: 9,  // hard coded for db
-        prioritytype: this.state.types[this.state.priority_type_id - 1].name,
+        // prioritytype: this.state.types[this.state.priority_type_id - 1].name,
       })
     })
       .then(res => console.log(res))
@@ -79,7 +78,6 @@ export default class NewPriorityForm extends Component {
               value={this.state.description}
               onChange={this.saveToState}
             />
-            <button type='submit'>Add Priority</button>
 
             <label htmlFor='priority_type_id' style={{ color: 'black' }}>Priority Type</label>
             <select name='priority_type_id' onChange={this.saveToState}>
@@ -87,6 +85,8 @@ export default class NewPriorityForm extends Component {
                 <option value={type.id}>{type.name}</option>
               ))}
             </select>
+
+            <button type='submit'>Add Priority</button>
           </form>
         </div>
       </>
