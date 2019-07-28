@@ -45,18 +45,6 @@ export default class NewPriorityForm extends Component {
         .catch(err => console.log(err))    
     }
     
-    render() {
-        return (
-            <div>
-                <Header title={"Add New Priority"} />
-                <div className="formpages">
-                  <HeaderBlock name={"Add New Priority"} description={"Noticed something new in your community?"} />
-                <form className="form" name="new-priority" onSubmit={this.handleSubmit}>
-                    <label className="form__label" htmlFor="name">
-                        Priority Name
-                    </label>
-                    <input className="form__input" type="text" name="name" value={this.state.name} onChange={this.saveToState} placeholder="Textfield" required />
-
   createNewPriority = async e => {
     e.preventDefault();
     fetch(`${apiUrl}/priorities`, {
