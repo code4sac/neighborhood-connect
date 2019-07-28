@@ -11,17 +11,19 @@ export default class LocationHolder extends React.Component {
     this.props.hood ? visibility = "visible" : visibility = "hidden";
 
     return (
-      <div className="locationHolder">
-        <Link to="/selectNeighborhood">
-          <p className="locationHolder__change">
-            Change Location <img className="locationHolder__image chevronArrow" src={whiteArrow} alt="arrow" />
-          </p>
-        </Link>
-        <div className="seperator" />
-        <Link to="selectNeighborhood" style={{ visibility: `${visibility}` }} className="locationHolder__current btn btn--primary-blue">
-          {this.props.hood}
-        </Link>
-      </div>
+        <div className="locationHolder">
+            <div className="locationHolder__container">
+                <Link to="/selectNeighborhood">
+                    <p className="locationHolder__change">
+                        Change Location <img className="locationHolder__image chevronArrow" src={whiteArrow} alt="arrow" />
+                    </p>
+                </Link>
+                <div className="seperator" />
+                <Link to="selectNeighborhood" style={{ visibility: `${visibility}` }} className="locationHolder__current btn btn--primary-blue">
+                    {this.props.hood}
+                </Link>
+            </div>
+        </div>
     );
   }
 }

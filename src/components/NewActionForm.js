@@ -45,11 +45,11 @@ export default class NewEventForm extends Component {
             <label className="form__label" htmlFor="title">
               Action Title
                     </label>
-                    <input className="form__input" type="text" name="title" value={this.state.title} onChange={this.saveToState} required />
+                    <input className="form__input" type="text" name="title" value={this.state.title} onChange={this.saveToState} placeholder="New Action" required />
                     <label className="form__label" htmlFor="description">
                         Action Description
                     </label>
-                    <textarea className="form__textarea" type="text" name="description" value={this.state.description} onChange={this.saveToState} required />
+                    <textarea className="form__textarea" type="text" name="description" value={this.state.description} onChange={this.saveToState} placeholder="Description" required />
                     <button className="form__btn btn btn--primary-blue u-margin-top-small" type="submit">
                         Create Action
                     </button>

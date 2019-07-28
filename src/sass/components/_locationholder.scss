@@ -1,10 +1,18 @@
 .locationHolder {
     background-color: $color-secondary-blue;
-    height: 5.5rem;
-    color: $color-white-1;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+
+    &__container {
+        height: 5.5rem;
+        color: $color-white-1;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        @media screen and (min-width: 1280px) {
+            width: 25%;
+        }
+    }
     
     &__change {
         color: $color-white-1;
