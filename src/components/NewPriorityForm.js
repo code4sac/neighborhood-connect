@@ -35,16 +35,7 @@ export default class NewPriorityForm extends Component {
       this.setState({ [e.target.name]: e.target.value });
     }
   }
-    handleSubmit = e => {
-        e.preventDefault();
-        fetch('INSERT__URL', { 
-          method: 'POST',
-          body: JSON.stringify(this.state)}
-          )
-        .then(this.setState({name:'',details:''}))
-        .catch(err => console.log(err))    
-    }
-    
+
   createNewPriority = async e => {
     e.preventDefault();
     fetch(`${apiUrl}/priorities`, {
