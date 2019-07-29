@@ -1,12 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
-import axios from "axios";
-import { Redirect } from "react-router-dom";
+import React from 'react';
+import PropTypes from 'prop-types';
+import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
-import PriorityCard from "./PriorityCard";
-import Header from "./Header";
-import LocationHolder from "./LocationHolder";
-import { apiUrl } from "../config";
+import PriorityCard from './PriorityCard';
+import Header from './Header';
+import LocationHolder from './LocationHolder';
+import { apiUrl } from '../config';
 
 import LinkToPage from './LinkToPage';
 import greyplus from '../assets/add-grey-button.svg';
@@ -15,60 +15,94 @@ import blackArrow from '../assets/chevron-right-black.svg';
 import HeaderBlock from './HeaderBlock';
 
 export default class PrioritiesOrderPage extends React.Component {
-  state = {
-    priorities: [],
-    prioritiesFetched: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      priorities: [],
+      prioritiesFetched: false,
+    };
+  }
 
   componentDidMount() {
-    const fetchPriorities = async () => {
-      const res = await axios.get(
-        `${apiUrl}/priorities/orgs/${this.props.orgId}`
-      );
-      this.setState({ priorities: res.data, prioritiesFetched: true });
-    };
-    fetchPriorities();
+    this.fetchPriorities();
   }
-  // Takes index of priority to swap ranks, creating a new sorted array based on the rank, and seet state to new array
-  promoteRank = priorityIndex => {
-    const updatedState = { ...this.state };
-    if (priorityIndex >= 1) {
-      updatedState.priorities[priorityIndex].rank = priorityIndex;
-      updatedState.priorities[priorityIndex - 1].rank = priorityIndex + 1;
-      let sortedData = updatedState.priorities.sort((a, b) =>
-        a.rank > b.rank ? 1 : -1
-      );
-      this.setState({ sortedData });
-    }
-  };
 
-  demoteRank = priorityIndex => {
-    const updatedState = { ...this.state };
-    if (priorityIndex < updatedState.priorities.length - 1) {
-      updatedState.priorities[priorityIndex].rank = priorityIndex + 2;
-      updatedState.priorities[priorityIndex + 1].rank = priorityIndex + 1;
-      let sortedData = updatedState.priorities.sort((a, b) =>
-        a.rank > b.rank ? 1 : -1
-      );
-      this.setState({ sortedData });
-    }
-  };
+  async fetchPriorities() {
+    let updatedState = { ...this.state };
+    updatedState.prioritiesFetched = false;
 
-  async updatePriorityRank(priorityId1, priorityId2, rankId1, rankId2) {
-    // store urls to patch
-    const urls = [
-      `${apiUrl}/priorities/${priorityId1}/${rankId1}`,
-      `${apiUrl}/priorities/${priorityId2}/${rankId2}`
-    ];
-    // use map() to perform a fetch and handle the reponse for each url
-    Promise.all(
-      urls.map((url, index) => (
-        axios.patch(url)
-          .then(() => console.log(`Patched ${index === 1 ? 'selected' : 'replaced'} priority`))
-          .catch(() => console.log(`Error patching ${index === 1 ? 'selected' : 'replaced'} priority`))
-      )
-      )
-    )
+    const res = await axios.get(
+      `${apiUrl}/priorities/orgs/${this.props.orgId}`
+    );
+
+    let sortedData = [...res.data].sort((a, b) => (a.rank > b.rank ? 1 : -1));
+    updatedState.priorities = sortedData;
+    updatedState.prioritiesFetched = true;
+    this.setState(updatedState);
+  }
+
+  async promoteRank(id, priorityIdx) {
+    if (priorityIdx > 0 && priorityIdx < this.state.priorities.length) {
+      const state = { ...this.state };
+      // new ranks for the two priorities that are affected by promotion.
+      const promotedRank = priorityIdx; // 2
+      const demotedRank = priorityIdx + 1; // 3
+
+      // priorities id's for the two priorities affected by promotion
+      const promotedId = state.priorities[priorityIdx].id;
+      const demotedId = state.priorities[priorityIdx - 1].id;
+
+      try {
+        await this.updatePriorityRanks(
+          promotedId,
+          demotedId,
+          promotedRank,
+          demotedRank
+        );
+        await this.fetchPriorities();
+      } catch (err) {
+        // some sort of error handeling
+        console.log(err);
+      }
+    }
+  }
+
+  // promote ex: 2 => 3 (base 10)
+  async demoteRank(id, priorityIdx) {
+    if (priorityIdx < this.state.priorities.length - 1) {
+      const state = { ...this.state };
+
+      const demotedRank = priorityIdx + 2;
+      const promotedRank = priorityIdx + 1;
+
+      // priorities id's for the two priorities affected by promotion
+      const promotedId = state.priorities[priorityIdx + 1].id;
+      const demotedId = state.priorities[priorityIdx].id;
+
+      try {
+        await this.updatePriorityRanks(
+          promotedId,
+          demotedId,
+          promotedRank,
+          demotedRank
+        );
+
+        await this.fetchPriorities();
+      } catch (err) {
+        // some sort of error handeling
+        console.log(err);
+      }
+    }
+  }
+
+  async updatePriorityRanks(promotedId, demotedId, promotedRank, demotedRank) {
+    const body = {
+      promotedId: promotedId,
+      demotedId: demotedId,
+      promotedRank: promotedRank,
+      demotedRank: demotedRank,
+    };
+    await axios.post(`${apiUrl}/priorities/updateRank`, body);
   }
 
   render() {
@@ -84,10 +118,10 @@ export default class PrioritiesOrderPage extends React.Component {
             type={priority.prioritytype}
             description={priority.description}
             promote={() => {
-              this.promoteRank(index);
+              this.promoteRank(priority.id, index);
             }}
             demote={() => {
-              this.demoteRank(index);
+              this.demoteRank(priority.id, index);
             }}
             location={this.props.location.pathname}
           />
@@ -98,7 +132,7 @@ export default class PrioritiesOrderPage extends React.Component {
     if (this.props.orgId === null) return <Redirect to="/selectNeighborhood" />;
     return (
       <div>
-        <Header title={"Edit Priorities"} />
+        <Header title={'Edit Priorities'} />
         <LocationHolder hood={this.props.neighborhood} />
 
         <div className="prioritiesPage">
@@ -114,5 +148,5 @@ export default class PrioritiesOrderPage extends React.Component {
 
 PrioritiesOrderPage.propTypes = {
   neighborhood: PropTypes.string,
-  orgId: PropTypes.number
+  orgId: PropTypes.number,
 };
