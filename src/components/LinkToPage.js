@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { thisExpression } from '@babel/types';
 
 export default class LinkToPage extends React.Component {
     render() {
