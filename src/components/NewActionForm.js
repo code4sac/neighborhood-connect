@@ -39,7 +39,11 @@ export default class NewEventForm extends Component {
                 mode: "cors",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData)
-              }).then(this.setState({ title: "", description: "" }));
+              })
+              .then(res => res.json())
+              .then(response => console.log(response))
+              .then(this.setState({ title: "", description: "" }))
+              .catch(err => console.log(err));
             }}
           >
             <label className="form__label" htmlFor="title">
