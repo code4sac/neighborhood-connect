@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import FilteredOrgList from './FilteredOrgList'
 import Header from './Header';
 import { apiUrl } from '../config';
-
+import { priorityTypes } from "./seed";
 
 const NeighborhoodSelector = ({ neighborhood, setNeighborhood, setOrgId, setSearchType }) => {
   const [searchString, setSearchString] = useState(neighborhood);
@@ -25,12 +25,10 @@ const NeighborhoodSelector = ({ neighborhood, setNeighborhood, setOrgId, setSear
         districts.push({id: i, name: `District ${i}`, logo_url: 'lorem.ipsum.com', type: 'district'})
       }
 
-      const priorityTypes = []
-      for (let i = 1; i <= 8; i++) {
-        priorityTypes.push({id: i, name: `Some Priority type ${i}`, logo_url: 'lorem.ipsum.com', type: 'type'})
-      }
-
-      setOrganizations(neighborhoods.concat(districts).concat(priorityTypes))
+      const priorityTypesMapped = priorityTypes.map(((pt) => {
+         return {...pt, name: `Priority Type: ${pt.name}`, type: 'type'}
+       }))
+      setOrganizations(neighborhoods.concat(districts).concat(priorityTypesMapped))
     }
     fetchOrgs();
     setSearchString('')
