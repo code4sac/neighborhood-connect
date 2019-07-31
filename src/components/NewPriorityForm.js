@@ -65,7 +65,7 @@ export default class NewPriorityForm extends Component {
           <form className="form" name="new-priority" onSubmit={this.createNewPriority}>
 
             <label className="form__label" htmlFor="priority_type_id">Priority Type</label>
-            <select name='priority_type_id' onChange={this.saveToState}>
+            <select className="form__select" name='priority_type_id' onChange={this.saveToState}>
               {this.state.types.map(type => (
                 <option value={type.id} key={type.id}>{type.name}</option>
               ))}
