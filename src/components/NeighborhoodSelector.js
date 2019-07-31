@@ -8,7 +8,7 @@ import Header from './Header';
 import { apiUrl } from '../config';
 
 
-const NeighborhoodSelector = ({ neighborhood, setNeighborhood, setOrgId }) => {
+const NeighborhoodSelector = ({ neighborhood, setNeighborhood, setOrgId, setSearchType }) => {
   const [searchString, setSearchString] = useState(neighborhood);
   const [redirect, setRedirect] = useState(false);
   const [organizations, setOrganizations] = useState([]);
@@ -18,7 +18,13 @@ const NeighborhoodSelector = ({ neighborhood, setNeighborhood, setOrgId }) => {
       const res = await axios.get(
         `${apiUrl}/orgs`
       )
-      setOrganizations(res.data)
+      const neighborhoods = res.data.map((o) => { return {...o, type: 'neighborhood'} } )
+
+      const districts = []
+      for (let i = 1; i <= 8; i++) {
+        districts.push({id: i, name: `District ${i}`, logo_url: 'lorem.ipsum.com', type: 'district'})
+      }
+      setOrganizations(neighborhoods.concat(districts))
     }
     fetchOrgs();
     setSearchString('')
@@ -27,7 +33,11 @@ const NeighborhoodSelector = ({ neighborhood, setNeighborhood, setOrgId }) => {
 
   const handleSelectNeighborhood = org => {
     setNeighborhood(org.name);
+    console.log("org name set", org.name)
+    console.log("org type set", org.type)
     setOrgId(org.id);
+    setSearchType(org.type);
+    localStorage.setItem('searchType', org.type)
     localStorage.setItem('orgId', `${org.id}`)
     localStorage.setItem('neighborhoodName', `${org.name}`)
     setRedirect(true);
@@ -70,6 +80,7 @@ const NeighborhoodSelector = ({ neighborhood, setNeighborhood, setOrgId }) => {
 NeighborhoodSelector.propTypes = {
   neighborhood: PropTypes.string,
   setNeighborhood: PropTypes.func,
+  setSearchType: PropTypes.func,
   setOrgId: PropTypes.func,
 }
 

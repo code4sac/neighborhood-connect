@@ -22,6 +22,10 @@ function App() {
     return initialId;
   });
 
+  const [searchType, setSearchType] = useState(() => {
+    const initialType = localStorage.getItem('searchType');
+    return initialType;
+  });
   return (
     <Router>
       <Route
@@ -30,8 +34,8 @@ function App() {
         render={(props) => (
           <PrioritiesPage
             orgId={orgId}
-            setOrgId={setOrgId}
             neighborhood={neighborhood}
+            searchType={searchType}
             {...props}
           />
         )}
@@ -49,6 +53,7 @@ function App() {
             neighborhood={neighborhood}
             setNeighborhood={setNeighborhood}
             setOrgId={setOrgId}
+            setSearchType={setSearchType}
             {...props}
           />
         )}
