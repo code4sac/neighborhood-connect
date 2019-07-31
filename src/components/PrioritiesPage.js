@@ -24,7 +24,16 @@ const PrioritiesPage = ({ orgId, neighborhood }) => {
     fetchPosts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   if (orgId === null) return <Redirect to="/selectNeighborhood" />;
+
+  let prioritiesList = priorities.map( (priority, index) => (
+      <li key={priority.id}>
+          {/* can later make visible with priority.visibility */}
+          <PriorityCard id={priority.id} type={priority.prioritytype} description={priority.description} rank={priority.rank} style={{ animationDelay: `${index / 20}s`}} />
+      </li>
+  ));
+
   return (
     <div>
       <Header
@@ -36,17 +45,7 @@ const PrioritiesPage = ({ orgId, neighborhood }) => {
       <LocationHolder hood={neighborhood} />
       <div className="prioritiesPage">
         <ul>
-          {priorities.map((priority) => (
-            <li key={priority.id}>
-              {/* can later make visible with priority.visibility */}
-              <PriorityCard
-                id={priority.id}
-                type={priority.prioritytype}
-                description={priority.description}
-                rank={priority.rank}
-              />
-            </li>
-          ))}
+          {prioritiesList}
         </ul>
       </div>
     </div>

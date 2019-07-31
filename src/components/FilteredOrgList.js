@@ -16,7 +16,7 @@ const FilteredOrgList = (props) => {
         index={index}
         key={org.id}
         className="orgList__card"
-        style={{ animationDelay: `${index / 15}s` }}
+        style={{ animationDelay: `${index / 20}s` }}
         onClick={() => {
           props.onSelect(org);
         }}

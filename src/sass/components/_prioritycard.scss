@@ -6,6 +6,7 @@
     margin-bottom: 2rem;
     position: relative;
     cursor: pointer;
+    animation: fadeIn .5s ease-in backwards;
     
     &__banner {
         display: flex;
@@ -29,4 +30,20 @@
         top: 55%;
         right: 3%;
     }
+
+    &__control {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 30%;
+        right: 3%;
+
+        button {
+            width: 3rem;
+            height: 3rem;
+            border: none;
+            background-color: transparent;
+        }
+    }
+    
 }

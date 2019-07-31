@@ -32,7 +32,7 @@ export default class ActionsPage extends Component {
     render() {
         let avatar = action.avatar ? action.avatar : placeholder;
 
-        let actionsList = this.state.actions.map(action => (
+        let actionsList = this.state.actions.map( (action, index) => (
             <Action
                 id={action.id}
                 key={action.id}
@@ -41,6 +41,7 @@ export default class ActionsPage extends Component {
                 title={action.title}
                 date={action.timestamp}
                 description={action.description}
+                style={{ animationDelay: `${index / 15}s` }}
             />
         ));
         return (

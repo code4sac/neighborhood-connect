@@ -7,7 +7,7 @@
         color: $color-grey-dark-3;
     }
 
-    &__input {
+    &__input, &__select {
         border: .1rem solid $color-grey-3;
         border-radius: .7rem;
         min-height: 4.5rem;
@@ -36,7 +36,7 @@
         &:active,
         &:focus {
             outline: none;
-            border: .1rem solid $color-secondary-blue;
+            border: .2rem solid $color-secondary-blue;
         }
     }
 

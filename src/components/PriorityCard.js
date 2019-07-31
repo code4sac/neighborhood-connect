@@ -1,11 +1,11 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
-import blackArrow from '../assets/chevron-right-black.svg';
+import chevronright from '../assets/chevron-right-black.svg';
+import chevronup from '../assets/chevron-up-black.svg';
+import chevrondown from '../assets/chevron-down-black.svg';
 import PropTypes from 'prop-types';
 // const PriorityCard = ({ rank, type, description, promote, demote, location }) => {
-const buttonStyle = {
-  height: '25px', width: '100px', backgroundColor: '#6A81AC', color: 'white', borderRadius: '25px', border: '1px solid #6A81AC', margin: '0 1rem'
-};
+
 class PriorityCard extends React.Component {
   state = {
     redirect: false,
@@ -24,8 +24,18 @@ class PriorityCard extends React.Component {
   render() {
     const { id, rank, type, description, promote, demote, location } = this.props; //needs priorityId
     if (this.state.redirect) return <Redirect to={`/actions/${this.state.reRoute}`} />;
+
+    //render option based on route: nav to more details or re-rank priorities
+    let controlOption = location === "/editPriorities" ? 
+          <div className="priorityCard__control">
+            <button id="promote" onClick={() => { promote() }}><img className="chevronArrow" src={chevronup} alt="arrow" /></button>
+            <button id="demote" onClick={() => { demote() }}><img className="chevronArrow" src={chevrondown} alt="arrow" /></button>
+          </div>
+          :
+          <img className="priorityCard__image chevronArrow" onClick={() => { this.navToPriority(id) }} src={chevronright} alt="arrow" />;
+
     return (
-      <div className="priorityCard" onClick={() => { this.navToPriority(id) }}>
+      <div className="priorityCard" style={this.props.style}>
         <div className="priorityCard__banner">
           <p>#{rank} Priority</p>
           <p>{type}</p>
@@ -34,13 +44,7 @@ class PriorityCard extends React.Component {
           <h2 className="heading-tertiary">{type}</h2>
           <p className="descriptions">{description}</p>
         </div>
-        {(location === '/editPriorities') && (
-          <div style={{ margin: '1rem' }}>
-            <button id="promote" onClick={() => { promote() }} style={buttonStyle}>Promote Priority</button>
-            <button id="demote" onClick={() => { demote() }} style={buttonStyle}>Demote Priority</button>
-          </div>
-        )}
-        <img className="priorityCard__image chevronArrow" src={blackArrow} alt="arrow" />
+        {controlOption}
       </div>
     );
   }

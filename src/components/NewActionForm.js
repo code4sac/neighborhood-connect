@@ -2,29 +2,33 @@ import React, { Component } from 'react';
 
 import Header from './Header';
 import HeaderBlock from './HeaderBlock';
+import Success from './Success';
 import { apiUrl } from '../config';
 
 export default class NewEventForm extends Component {
   state = {
     title: '',
     description: '',
+    formStatus: false
   }
 
   saveToState = e => {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  render() {
-    return (
-      <div>
-        <Header title={"Add New Action"} />
-        <div className="formpages">
-          <HeaderBlock name={"Add New Action"} description={"Want to add a new action in your community?"} />
-          <form
-            className="form"
-            name="new-event"
-            // Consider refactoring this POST to a method outside of the form tag
-            onSubmit={async e => {
+  clearPayload() {
+    this.setState({ 
+      title: "", 
+      description: "", 
+      formStatus: true
+    });
+
+    this.change = setTimeout(() => {
+        this.setState({ formStatus: false });
+    }, 2500);
+  }
+
+  handleSubmit = e => {
               e.preventDefault();
               const formData = {
                 title: this.state.title,
@@ -41,10 +45,24 @@ export default class NewEventForm extends Component {
                 body: JSON.stringify(formData)
               })
               .then(res => res.json())
-              .then(response => console.log(response))
-              .then(this.setState({ title: "", description: "" }))
+              .then(this.clearPayload())
               .catch(err => console.log(err));
-            }}
+    }
+
+  render() {
+
+    let status = this.state.formStatus ? <Success message={'Successfully Added Action'} /> : '';
+
+    return (
+      <div>
+        <Header title={"Add New Action"} />
+        <div className="formpages">
+          <HeaderBlock name={"Add New Action"} description={"Want to add a new action in your community?"} />
+          <form
+            className="form"
+            name="new-event"
+            // Consider refactoring this POST to a method outside of the form tag
+            onSubmit={this.handleSubmit}
           >
             <label className="form__label" htmlFor="title">
               Action Title
@@ -59,6 +77,7 @@ export default class NewEventForm extends Component {
                     </button>
           </form>
         </div>
+        {status}
       </div>
     );
   }

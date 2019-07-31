@@ -124,6 +124,7 @@ export default class PrioritiesOrderPage extends React.Component {
               this.demoteRank(priority.id, index);
             }}
             location={this.props.location.pathname}
+            style={{ animationDelay: `${ index / 20}s`}}
           />
         </li>
       );
@@ -138,7 +139,7 @@ export default class PrioritiesOrderPage extends React.Component {
         <div className="prioritiesPage">
           <HeaderBlock name={"Add New Priority"} description={"Noticed something new in your community?"} />
           <LinkToPage form={"/addPriority"} icon={greyplus} optionName={"Add Priority"} image={blackArrow} />
-          <HeaderBlock name={"Rearrange Priorities"} description={"Rearrange priorities by clicking promote/demote."} />
+          <HeaderBlock name={"Rearrange Priorities"} description={"Rearrange priorities by clicking the arrows."} />
           <ul>{sortedDataList}</ul>
         </div>
       </div>
