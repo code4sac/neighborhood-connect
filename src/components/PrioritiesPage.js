@@ -21,7 +21,7 @@ const PrioritiesPage = ({ orgId, neighborhood, searchType }) => {
           ? `${apiUrl}/priorities/orgs/${orgId}`
           : (searchType === 'district'
             ? `${apiUrl}/priorities/district/${orgId}`
-            : `${apiUrl}/priorities/type/${orgId}` )
+            : `${apiUrl}/priorities/type/${orgId}`)
         )
       );
 
@@ -34,21 +34,27 @@ const PrioritiesPage = ({ orgId, neighborhood, searchType }) => {
 
   if (orgId === null) return <Redirect to="/selectNeighborhood" />;
 
-  let prioritiesList = priorities.map( (priority, index) => (
-      <li key={priority.id}>
-          {/* can later make visible with priority.visibility */}
-          <PriorityCard id={priority.id} type={priority.prioritytype} description={priority.description} rank={priority.rank} style={{ animationDelay: `${index / 20}s`}} />
-      </li>
+  let prioritiesList = priorities.map((priority, index) => (
+    <li key={priority.id}>
+      {/* can later make visible with priority.visibility */}
+      <PriorityCard id={priority.id} type={priority.prioritytype} description={priority.description} rank={priority.rank} style={{ animationDelay: `${index / 20}s` }} />
+    </li>
   ));
+
+  const header = searchType === 'neighborhood' ? (
+    <Header
+      title={'Priorities'}
+      optionIcon={edit}
+      option={'/editPriorities'}
+      optionName={'Edit Priorities'}
+    />
+  ) : (
+      <Header title={'Priorities'} />
+    )
 
   return (
     <div>
-      <Header
-        title={'Priorities'}
-        optionIcon={edit}
-        option={'/editPriorities'}
-        optionName={'Edit Priorities'}
-      />
+      {header}
       <LocationHolder hood={neighborhood} />
       <div className="prioritiesPage">
         <ul>
