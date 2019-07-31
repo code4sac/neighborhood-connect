@@ -124,6 +124,7 @@ export default class PrioritiesOrderPage extends React.Component {
               this.demoteRank(priority.id, index);
             }}
             location={this.props.location.pathname}
+            style={{ animationDelay: `${ index / 20}s`}}
           />
         </li>
       );
