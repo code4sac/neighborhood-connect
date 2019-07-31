@@ -6,6 +6,7 @@
     margin-bottom: 2rem;
     position: relative;
     cursor: pointer;
+    animation: fadeIn .5s ease-in backwards;
     
     &__banner {
         display: flex;

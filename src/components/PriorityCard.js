@@ -24,8 +24,9 @@ class PriorityCard extends React.Component {
   render() {
     const { id, rank, type, description, promote, demote, location } = this.props; //needs priorityId
     if (this.state.redirect) return <Redirect to={`/actions/${this.state.reRoute}`} />;
+
     return (
-      <div className="priorityCard" onClick={() => { this.navToPriority(id) }}>
+      <div className="priorityCard" onClick={() => { this.navToPriority(id) }} style={this.props.style}>
         <div className="priorityCard__banner">
           <p>#{rank} Priority</p>
           <p>{type}</p>
