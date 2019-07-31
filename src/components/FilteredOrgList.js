@@ -14,7 +14,7 @@ const FilteredOrgList = (props) => {
     return (
       <div
         index={index}
-        key={org.id}
+        key={`${org.type}.${org.id}`}
         className="orgList__card"
         style={{ animationDelay: `${index / 20}s` }}
         onClick={() => {
