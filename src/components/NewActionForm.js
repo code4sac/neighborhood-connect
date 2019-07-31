@@ -2,19 +2,25 @@ import React, { Component } from 'react';
 
 import Header from './Header';
 import HeaderBlock from './HeaderBlock';
+import Success from './Success';
 import { apiUrl } from '../config';
 
 export default class NewEventForm extends Component {
   state = {
     title: '',
     description: '',
+    formStatus: false
   }
 
   saveToState = e => {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+
   render() {
+
+    let status = this.state.formStatus ? <Success message={'Successfully Added Priority'} /> : '';
+
     return (
       <div>
         <Header title={"Add New Action"} />
@@ -42,7 +48,7 @@ export default class NewEventForm extends Component {
               })
               .then(res => res.json())
               .then(response => console.log(response))
-              .then(this.setState({ title: "", description: "" }))
+              .then(this.setState({ title: "", description: "", formStatus: true }))
               .catch(err => console.log(err));
             }}
           >
@@ -59,6 +65,7 @@ export default class NewEventForm extends Component {
                     </button>
           </form>
         </div>
+        {status}
       </div>
     );
   }
