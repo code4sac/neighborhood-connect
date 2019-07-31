@@ -10,7 +10,7 @@ export default class Action extends React.Component {
         const formattedDate = new Date(date).toDateString();
 
         return (
-            <div className="action">
+            <div className="action" style={this.props.style}>
                 <ul className="action__list">
                     <li className="action__item" id={id}>
                         <span className="action__image">
