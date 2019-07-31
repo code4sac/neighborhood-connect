@@ -16,7 +16,7 @@ export default class NewEventForm extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  setPayload() {
+  clearPayload() {
     this.setState({ 
       title: "", 
       description: "", 
@@ -45,13 +45,13 @@ export default class NewEventForm extends Component {
                 body: JSON.stringify(formData)
               })
               .then(res => res.json())
-              .then(this.setPayload())
+              .then(this.clearPayload())
               .catch(err => console.log(err));
     }
 
   render() {
-    console.log(this.state.formStatus);
-    let status = this.state.formStatus ? <Success message={'Successfully Added Priority'} /> : '';
+
+    let status = this.state.formStatus ? <Success message={'Successfully Added Action'} /> : '';
 
     return (
       <div>
