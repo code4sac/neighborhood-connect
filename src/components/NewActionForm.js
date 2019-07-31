@@ -16,21 +16,7 @@ export default class NewEventForm extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-
-  render() {
-
-    let status = this.state.formStatus ? <Success message={'Successfully Added Priority'} /> : '';
-
-    return (
-      <div>
-        <Header title={"Add New Action"} />
-        <div className="formpages">
-          <HeaderBlock name={"Add New Action"} description={"Want to add a new action in your community?"} />
-          <form
-            className="form"
-            name="new-event"
-            // Consider refactoring this POST to a method outside of the form tag
-            onSubmit={async e => {
+  handleSubmit = e => {
               e.preventDefault();
               const formData = {
                 title: this.state.title,
@@ -47,10 +33,25 @@ export default class NewEventForm extends Component {
                 body: JSON.stringify(formData)
               })
               .then(res => res.json())
-              .then(response => console.log(response))
               .then(this.setState({ title: "", description: "", formStatus: true }))
+              .then(this.setState({ formStatus: false}))
               .catch(err => console.log(err));
-            }}
+    }
+
+  render() {
+
+    let status = this.state.formStatus ? <Success message={'Successfully Added Priority'} /> : '';
+
+    return (
+      <div>
+        <Header title={"Add New Action"} />
+        <div className="formpages">
+          <HeaderBlock name={"Add New Action"} description={"Want to add a new action in your community?"} />
+          <form
+            className="form"
+            name="new-event"
+            // Consider refactoring this POST to a method outside of the form tag
+            onSubmit={this.handleSubmit}
           >
             <label className="form__label" htmlFor="title">
               Action Title
