@@ -24,7 +24,13 @@ const NeighborhoodSelector = ({ neighborhood, setNeighborhood, setOrgId, setSear
       for (let i = 1; i <= 8; i++) {
         districts.push({id: i, name: `District ${i}`, logo_url: 'lorem.ipsum.com', type: 'district'})
       }
-      setOrganizations(neighborhoods.concat(districts))
+
+      const priorityTypes = []
+      for (let i = 1; i <= 8; i++) {
+        priorityTypes.push({id: i, name: `Some Priority type ${i}`, logo_url: 'lorem.ipsum.com', type: 'type'})
+      }
+
+      setOrganizations(neighborhoods.concat(districts).concat(priorityTypes))
     }
     fetchOrgs();
     setSearchString('')
