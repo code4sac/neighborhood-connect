@@ -48,7 +48,7 @@ export default class ActionsPage extends Component {
             <div>
                 <Header title={"Actions"} option={`/newAction/${this.props.match.params.priorityId}`} optionName={"New Action"} optionIcon={action} />
                 <div className="details">
-                    <h2 className="heading-secondary u-margin-bottom-small">Future Events</h2>
+                    <h2 className="heading-secondary u-margin-bottom-small">Actions Taken</h2>
                     {actionsList}
                 </div>
             </div>
