@@ -11,19 +11,21 @@ import { apiUrl } from '../config';
 
 const PrioritiesPage = ({ orgId, neighborhood, searchType }) => {
   const [priorities, setPriorities] = useState([]);
-  console.log("search type", searchType)
   useEffect(() => {
     const fetchPosts = async () => {
-      console.log("searchType in fetchPosts", searchType)
-
-      const res = await axios.get(
-        (searchType === 'neighborhood'
-          ? `${apiUrl}/priorities/orgs/${orgId}`
-          : (searchType === 'district'
-            ? `${apiUrl}/priorities/district/${orgId}`
-            : `${apiUrl}/priorities/type/${orgId}`)
-        )
-      );
+      let url = '';
+      switch (searchType) {
+        case 'neighborhood':
+          url = `${apiUrl}/priorities/orgs/${orgId}`;
+          break;
+        case 'district':
+          url = `${apiUrl}/priorities/district/${orgId}`;
+          break;
+        default:
+          url = `${apiUrl}/priorities/type/${orgId}`;
+          break;
+      }
+      const res = await axios.get(url);
 
       res.data = [...res.data].sort((a, b) => (a.rank > b.rank ? 1 : -1));
       setPriorities(res.data);
@@ -34,7 +36,7 @@ const PrioritiesPage = ({ orgId, neighborhood, searchType }) => {
 
   if (orgId === null) return <Redirect to="/selectNeighborhood" />;
 
-  let prioritiesList = priorities.map((priority, index) => (
+  const prioritiesList = priorities.map((priority, index) => (
     <li key={priority.id}>
       {/* can later make visible with priority.visibility */}
       <PriorityCard id={priority.id} type={priority.prioritytype} description={priority.description} rank={priority.rank} style={{ animationDelay: `${index / 20}s` }} />
@@ -43,14 +45,14 @@ const PrioritiesPage = ({ orgId, neighborhood, searchType }) => {
 
   const header = searchType === 'neighborhood' ? (
     <Header
-      title={'Priorities'}
+      title="Priorities"
       optionIcon={edit}
-      option={'/editPriorities'}
-      optionName={'Edit Priorities'}
+      option="/editPriorities"
+      optionName="Edit Priorities"
     />
   ) : (
-      <Header title={'Priorities'} />
-    )
+    <Header title="Priorities" />
+  );
 
   return (
     <div>
@@ -66,8 +68,9 @@ const PrioritiesPage = ({ orgId, neighborhood, searchType }) => {
 };
 
 PrioritiesPage.propTypes = {
-  orgId: PropTypes.number,
-  neighborhood: PropTypes.string,
+  orgId: PropTypes.string.isRequired,
+  neighborhood: PropTypes.string.isRequired,
+  searchType: PropTypes.string.isRequired,
 };
 
 export default PrioritiesPage;
